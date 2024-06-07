@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: black;
+}
+
+/* Piccolo */
+.text-piccolo {
+  @apply text-[#4E46B4];
+}
+
+.bg-piccolo {
+  @apply bg-[#4E46B4];
+}
+
+.bg-piccolo-10 {
+  @apply bg-[#4E46B41F];
+}
+
+.border-piccolo {
+  @apply border-[#4E46B4];
+}
+
+/* Hit */
+.text-hit {
+  @apply text-[#40A69F];
+}
+
+.bg-hit {
+  @apply bg-[#40A69F];
+}
+
+.bg-hit-10 {
+  @apply bg-[#40A69F1F];
+}
+
+.border-hit {
+  @apply border-[#40A69F];
+}
+
+/* Beerus */
+.text-beerus {
+  @apply text-[#E2E2E2];
+}
+
+.bg-beerus {
+  @apply bg-[#E2E2E2];
+}
+
+.bg-beerus-10 {
+  @apply bg-[#E2E2E21F];
+}
+
+.border-beerus {
+  @apply border-[#E2E2E2];
+}
+
+/* Trunks */
+.text-trunks {
+  @apply text-[#595D62];
+}
+
+.bg-trunks {
+  @apply bg-[#595D62];
+}
+
+.bg-trunks-10 {
+  @apply bg-[#595D621F];
+}
+
+.border-trunks {
+  @apply border-[#595D62];
+}
+
+/* Krillin */
+.text-krillin {
+  @apply text-[#FFB319];
+}
+
+.bg-krillin {
+  @apply bg-[#FFB319];
+}
+
+.bg-krillin-10 {
+  @apply bg-[#FFB3191F];
+}
+
+.border-krillin {
+  @apply border-[#FFB319];
+}
+
+/* Chichi */
+.text-chichi {
+  @apply text-[#FF4E64];
+}
+
+.bg-chichi {
+  @apply bg-[#FF4E64];
+}
+
+.bg-chichi-10 {
+  @apply bg-[#FF4E641F];
+}
+
+.border-chichi {
+  @apply border-[#FF4E64];
+}
+
+/* Dodoria */
+.text-dodoria {
+  @apply text-[#D33030];
+}
+
+.bg-dodoria {
+  @apply bg-[#D33030];
+}
+
+.bg-dodoria-10 {
+  @apply bg-[#D330301F];
+}
+
+.border-dodoria {
+  @apply border-[#D33030];
+}
+
+/* Roshi */
+.text-roshi {
+  @apply text-[#2E7D32];
+}
+
+.bg-roshi {
+  @apply bg-[#2E7D32];
+}
+
+.bg-roshi-10 {
+  @apply bg-[#2E7D321F];
+}
+
+.border-roshi {
+  @apply border-[#2E7D32];
+}
+
+/* Cell */
+.text-cell {
+  @apply text-[#95F1D5];
+}
+
+.bg-cell {
+  @apply bg-[#95F1D5];
+}
+
+.bg-cell-10 {
+  @apply bg-[#95F1D51F];
+}
+
+.border-cell {
+  @apply border-[#95F1D5];
+}
+
+/* Raditz */
+.text-raditz {
+  @apply text-[#B3804A];
+}
+
+.bg-raditz {
+  @apply bg-[#B3804A];
+}
+
+.bg-raditz-10 {
+  @apply bg-[#B3804A1F];
+}
+
+.border-raditz {
+  @apply border-[#B3804A];
+}
+
+/* Whis */
+.text-whis {
+  @apply text-[#3448F0];
+}
+
+.bg-whis {
+  @apply bg-[#3448F0];
+}
+
+.bg-whis-10 {
+  @apply bg-[#3448F01F];
+}
+
+.border-whis {
+  @apply border-[#3448F0];
+}
+
+/* Frieza */
+.text-frieza {
+  @apply text-[#5C33CF];
+}
+
+.bg-frieza {
+  @apply bg-[#5C33CF];
+}
+
+.bg-frieza-10 {
+  @apply bg-[#5C33CF1F];
+}
+
+.border-frieza {
+  @apply border-[#5C33CF];
+}
+
+/* Nappa */
+.text-nappa {
+  @apply text-[#725550];
+}
+
+.bg-nappa {
+  @apply bg-[#725550];
+}
+
+.bg-nappa-10 {
+  @apply bg-[#7255501F];
+}
+
+.border-nappa {
+  @apply border-[#725550];
+}
