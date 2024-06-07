@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
+import Forum from "../pages/Forum";
+import Classes from "../pages/Classes";
+import Trainers from "../pages/Trainers";
 
 const router = createBrowserRouter([
   {
@@ -15,15 +18,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/trainers",
-        element: <Home />,
+        element: <Trainers />,
       },
       {
         path: "/classes",
-        element: <Home />,
+        element: <Classes />,
       },
       {
         path: "/forum",
-        element: <Home />,
+        element: <Forum />,
       },
     ],
   },

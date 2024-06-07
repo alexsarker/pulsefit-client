@@ -1,9 +1,11 @@
+import Hero from "../components/Home/Hero";
+import PopularClass from "../components/Home/PopularClass";
 
 const Home = () => {
   return (
     <div>
-      <h2 className="text-2xl">Hi bro</h2>
-
+      <Hero />
+      <PopularClass />
     </div>
   );
 };
