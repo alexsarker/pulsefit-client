@@ -6,7 +6,7 @@ const PopularClass = () => {
       <h2 className="text-4xl font-bold pb-6">Our Most Popular Classes</h2>
       <div className="carousel gap-5 rounded-none max-w-full">
         <div className="carousel-item">
-          <div className="card w-96">
+          <div className="card w-80">
             <figure>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -30,7 +30,7 @@ const PopularClass = () => {
           </div>
         </div>
         <div className="carousel-item">
-          <div className="card w-96">
+          <div className="card w-80">
             <figure>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -47,14 +47,14 @@ const PopularClass = () => {
                 and relaxation techniques.
               </p>
               <p className="text-piccolo font-semibold">Total Bookings: 25</p>
-              <a href="#" className="text-hit font-semibold">
+              <Link to="/" className="text-hit font-semibold">
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="carousel-item">
-          <div className="card w-96">
+          <div className="card w-80">
             <figure>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -71,14 +71,14 @@ const PopularClass = () => {
                 and relaxation techniques.
               </p>
               <p className="text-piccolo font-semibold">Total Bookings: 25</p>
-              <a href="#" className="text-hit font-semibold">
+              <Link to="/" className="text-hit font-semibold">
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="carousel-item">
-          <div className="card w-96">
+          <div className="card w-80">
             <figure>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -95,14 +95,14 @@ const PopularClass = () => {
                 and relaxation techniques.
               </p>
               <p className="text-piccolo font-semibold">Total Bookings: 25</p>
-              <a href="#" className="text-hit font-semibold">
+              <Link to="/" className="text-hit font-semibold">
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="carousel-item">
-          <div className="card w-96">
+          <div className="card w-80">
             <figure>
               <img
                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -119,9 +119,9 @@ const PopularClass = () => {
                 and relaxation techniques.
               </p>
               <p className="text-piccolo font-semibold">Total Bookings: 25</p>
-              <a href="#" className="text-hit font-semibold">
+              <Link to="/" className="text-hit font-semibold">
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
         </div>

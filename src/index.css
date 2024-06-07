@@ -8,6 +8,11 @@ body {
   color: black;
 }
 
+/* Jiren */
+.bg-jiren {
+  @apply bg-[#4E46B41F];
+}
+
 /* Piccolo */
 .text-piccolo {
   @apply text-[#4E46B4];
