@@ -50,10 +50,8 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <ul className="px-1 gap-10 mr-20 hidden lg:flex">
-          {navLinks}
-        </ul>
-        <Link>
+        <ul className="px-1 gap-10 mr-20 hidden lg:flex">{navLinks}</ul>
+        <Link to="/login">
           <button className="btn bg-piccolo text-white px-10 hover:bg-[#2A2473]">
             Login
           </button>

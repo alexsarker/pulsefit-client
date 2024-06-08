@@ -5,6 +5,8 @@ import ErrorPage from "../pages/ErrorPage";
 import Forum from "../pages/Forum";
 import Classes from "../pages/Classes";
 import Trainers from "../pages/Trainers";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
       {
         path: "/trainers",
