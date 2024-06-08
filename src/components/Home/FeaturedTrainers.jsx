@@ -1,15 +1,15 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import SectionTitle from "../SectionTitle";
 
 const FeaturedTrainers = () => {
   return (
     <div className="mb-24">
-      <div className="text-center pb-6">
-        <h2 className=" text-4xl font-bold pb-2">Meet Our Expert Trainer</h2>
-        <p className="max-w-xl mx-auto text-trunks">
-          Our team of professional trainers is here to help you achieve your
-          fitness goals. Get to know our trainers and their expertise.
-        </p>
-      </div>
+      <SectionTitle
+        heading={"Meet Our Expert Trainer"}
+        subHeading={
+          "Our team of professional trainers is here to help you achieve your fitness goals. Get to know our trainers and their expertise."
+        }
+      />
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
