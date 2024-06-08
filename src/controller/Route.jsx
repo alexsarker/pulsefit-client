@@ -7,6 +7,7 @@ import Classes from "../pages/Classes";
 import Trainers from "../pages/Trainers";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import TrainerDetail from "../pages/TrainerDetail";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/trainers",
         element: <Trainers />,
+      },
+      {
+        path: "/trainerDetail",
+        element: <TrainerDetail />,
       },
       {
         path: "/classes",
