@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BecomeImg from "/src/assets/becometrainer.svg";
+import BecomeImg from "/src/assets/trainers/becometrainer.svg";
 
 const BecomeTrainer = () => {
   return (

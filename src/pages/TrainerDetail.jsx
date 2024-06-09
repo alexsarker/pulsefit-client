@@ -74,7 +74,9 @@ const TrainerDetail = () => {
                 </p>
                 <p className="font-medium">
                   Email :{" "}
-                  <span className="font-normal">john.smith@yogafit.com</span>
+                  <span className="font-normal text-whis">
+                    john.smith@yogafit.com
+                  </span>
                 </p>
                 <p className="font-medium">
                   Location :{" "}
@@ -110,7 +112,7 @@ const TrainerDetail = () => {
           </div>
         </div>
       </div>
-        <BecomeTrainer />
+      <BecomeTrainer />
     </>
   );
 };
