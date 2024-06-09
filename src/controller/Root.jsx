@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
 import Follow from "../components/Home/Follow";
@@ -8,12 +8,13 @@ const Root = () => {
 
   return (
     <div>
+      <ScrollRestoration />
       <div className="container mx-auto">
-        <Navbar></Navbar>
-        <Outlet></Outlet>
+        <Navbar />
+        <Outlet />
       </div>
       {location.pathname === "/" && <Follow />}
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

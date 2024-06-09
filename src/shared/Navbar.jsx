@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import useAuth from "../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+
   const navLinks = (
     <>
       <li>
@@ -51,11 +56,56 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <ul className="px-1 gap-10 mr-20 hidden lg:flex">{navLinks}</ul>
-        <Link to="/login">
-          <button className="btn bg-piccolo text-white px-10 hover:bg-[#2A2473]">
-            Login
-          </button>
-        </Link>
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user.photoURL}
+                  />
+                </div>
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[20] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() =>
+                    logOut().then(() => {
+                      navigate("/login");
+                      toast.success("Logout Successfully");
+                    })
+                  }
+                >
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="btn bg-piccolo text-white px-10 hover:bg-[#2A2473]">
+              Login
+            </button>
+          </Link>
+        )}
+      </div>
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     </div>
   );
