@@ -1,10 +1,11 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import BecomeTrainer from "../components/BecomeTrainer";
 import { Helmet } from "react-helmet-async";
 
 const TrainerDetail = () => {
+  const trainer = useLoaderData();
   return (
     <>
       <Helmet>
@@ -17,102 +18,103 @@ const TrainerDetail = () => {
         }
       />
       <div className="flex mb-24 gap-24">
-        <div>
-          <img
-            src="https://i.ibb.co/NTDBXxL/1694264756501.jpg"
-            alt="trainer image"
-            className="w-64"
-          />
+        {trainer && (
           <div>
+            <img
+              src={trainer.profileImage}
+              alt="trainer image"
+              className="w-64 rounded-2xl"
+            />
             <div>
-              <h2 className="font-bold text-3xl">John Smith</h2>
-              <p className="text-whis text-xl">
-                Yoga, Pilates, Meditation{" "}
-                <small className="text-hit">(10+ Years)</small>
-              </p>
-            </div>
-            <div className="divider"></div>
-
-            <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-bold text-xl">Bio</h2>
-                <p>
-                  John Smith is a dedicated yoga instructor with over a decade
-                  of experience in helping individuals find balance and harmony
-                  through yoga and meditation. He specializes in personalized
-                  yoga sessions that cater to all levels of practitioners, from
-                  beginners to advanced yogis.
+                <h2 className="font-bold text-3xl pt-6">{trainer.name}</h2>
+                <p className="text-whis text-xl">
+                  {trainer.skills.join(", ")}{" "}
+                  <small className="text-hit">
+                    ({trainer.experience}+ Years)
+                  </small>
                 </p>
               </div>
-              <div className="space-y-4">
-                <h2 className="font-bold text-xl">Comprehensive Information</h2>
+              <div className="divider"></div>
+
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h2 className="font-bold text-xl">Bio</h2>
+                  <p>{trainer.bio}</p>
+                </div>
+                <div className="space-y-4">
+                  <h2 className="font-bold text-xl">
+                    Comprehensive Information
+                  </h2>
+                  <div>
+                    <p className="font-bold">
+                      Certifications:{" "}
+                      <span className="font-normal">
+                        {trainer.comprehensiveInformation.certifications.join(
+                          ", "
+                        )}
+                      </span>
+                    </p>
+                    <p className="font-bold">
+                      Achievements:{" "}
+                      <span className="font-normal">
+                        {trainer.comprehensiveInformation.achievements.join(
+                          ", "
+                        )}
+                      </span>
+                    </p>
+                    <p className="font-bold">
+                      Philosophy:{" "}
+                      <span className="font-normal">
+                        {trainer.comprehensiveInformation.philosophy}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
                 <div>
-                  {" "}
-                  <p className="font-medium">
-                    Certifications:{" "}
-                    <span className="font-normal">
-                      Certified Yoga Instructor (RYT 500), Certified Pilates
-                      Instructor
+                  <p className="font-bold">
+                    Phone : <span className="font-normal">{trainer.phone}</span>
+                  </p>
+                  <p className="font-bold">
+                    Email :{" "}
+                    <span className="font-normal text-whis">
+                      {trainer.email}
                     </span>
                   </p>
-                  <p className="font-medium">
-                    Achievements:{" "}
-                    <span className="font-normal">
-                      Conducted over 500 successful yoga retreats globally,
-                      Featured in Yoga Journal.
-                    </span>
-                  </p>
-                  <p className="font-medium">
-                    Philosophy:{" "}
-                    <span className="font-normal">
-                      "Yoga is not just about flexibility, it's about finding
-                      peace within."
-                    </span>
+                  <p className="font-bold">
+                    Location :{" "}
+                    <span className="font-normal">{trainer.location}</span>
                   </p>
                 </div>
               </div>
 
-              <div>
-                <p className="font-medium">
-                  Phone : <span className="font-normal">(+1) 123 456 7890</span>
-                </p>
-                <p className="font-medium">
-                  Email :{" "}
-                  <span className="font-normal text-whis">
-                    john.smith@yogafit.com
-                  </span>
-                </p>
-                <p className="font-medium">
-                  Location :{" "}
-                  <span className="font-normal">
-                    Adams St.Westford, MA 01886
-                  </span>
-                </p>
+              <div className="flex gap-4 pt-4">
+                <FaInstagram className="text-2xl" />
+                <FaFacebook className="text-2xl" />
+                <FaTwitter className="text-2xl" />
               </div>
             </div>
-
-            <div className="flex gap-4 pt-4">
-              <FaInstagram className="text-2xl" />
-              <FaFacebook className="text-2xl" />
-              <FaTwitter className="text-2xl" />
-            </div>
           </div>
-        </div>
+        )}
+
         <div className="h-full p-10 border border-beerus rounded-2xl">
           <h2 className="font-bold text-xl pb-8 w-96">Available Slots</h2>
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <p className="text-trunks">Monday, 8 AM - 10 AM</p>
-              <Link className="btn btn-sm bg-piccolo text-white px-10 hover:bg-[#2A2473]">
-                Book Now
-              </Link>
-            </div>
-            <div className="flex justify-between items-center">
-              <p className="text-trunks">Monday, 8 AM - 10 AM</p>
-              <Link className="btn btn-sm bg-piccolo text-white px-10 hover:bg-[#2A2473]">
-                Book Now
-              </Link>
-            </div>
+            {trainer &&
+              trainer.availableSlots.map((slot, index) => (
+                <div className="flex justify-between items-center" key={index}>
+                  <p className="text-trunks">
+                    {slot.day}, {slot.time}
+                  </p>
+                  <Link
+                    to="#"
+                    className="btn btn-sm bg-piccolo text-white px-6 hover:bg-[#2A2473]"
+                  >
+                    Book Now
+                  </Link>
+                </div>
+              ))}
           </div>
         </div>
       </div>

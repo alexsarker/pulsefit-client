@@ -11,7 +11,7 @@ const BecomeTrainer = () => {
         <img src={BecomeImg} alt="become trainer" />
         <p className="font-medium"> Apply now and make a difference.</p>
         <Link
-          to="/becomeTrainer"
+          to="/applyTrainer"
           className="btn bg-piccolo text-white px-10 hover:bg-[#2A2473]"
         >
           Become a Trainer

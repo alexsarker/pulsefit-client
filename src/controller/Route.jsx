@@ -38,8 +38,10 @@ const router = createBrowserRouter([
         element: <Trainers />,
       },
       {
-        path: "/trainerDetail",
+        path: "/trainers/:id",
         element: <TrainerDetail />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/trainers/${params.id}`),
       },
       {
         path: "/subscription",

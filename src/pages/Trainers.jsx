@@ -4,6 +4,7 @@ import SectionTitle from "../components/SectionTitle";
 import TrainerImg from "/src/assets/trainers/local.png";
 import { Helmet } from "react-helmet-async";
 import useTrainer from "../hooks/useTrainer";
+import { Link } from "react-router-dom";
 
 const Trainers = () => {
   const [trainersData] = useTrainer("");
@@ -26,7 +27,7 @@ const Trainers = () => {
         <div className="mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center">
             {trainersData.map((trainer) => (
-              <div key={trainer._id} className="card w-80 bg-piccolo">
+              <Link to={`/trainers/${trainer._id}`} key={trainer._id} className="card w-80 bg-piccolo">
                 <figure>
                   <img
                     src={trainer.profileImage}
@@ -67,7 +68,7 @@ const Trainers = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
