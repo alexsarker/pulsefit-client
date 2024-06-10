@@ -5,10 +5,14 @@ import Hero from "../components/Home/Hero";
 import NewsletterForm from "../components/Home/NewsletterForm";
 import PopularClass from "../components/Home/PopularClass";
 import Testimonials from "../components/Home/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Pulsefit | Home</title>
+      </Helmet>
       <Hero />
       <PopularClass />
       <Testimonials />

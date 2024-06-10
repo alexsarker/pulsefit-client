@@ -2,10 +2,14 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
 import { Link } from "react-router-dom";
 import BecomeTrainer from "../components/BecomeTrainer";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetail = () => {
   return (
     <>
+      <Helmet>
+        <title>Pulsefit | Trainer Detail</title>
+      </Helmet>
       <SectionTitle
         heading={"Trainer Detail"}
         subHeading={

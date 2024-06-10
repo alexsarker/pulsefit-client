@@ -11,6 +11,9 @@ import TrainerDetail from "../pages/TrainerDetail";
 import Subscription from "../pages/Subscription";
 import Payment from "../pages/Payment";
 import ApplyTrainer from "../pages/ApplyTrainer";
+import Dashboard from "../pages/Dashboard";
+import UserProfile from "../pages/UserProfile";
+// import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +60,14 @@ const router = createBrowserRouter([
       {
         path: "/forum",
         element: <Forum />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/profile",
+        element: <UserProfile />,
       },
     ],
   },

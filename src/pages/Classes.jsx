@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const Classes = () => {
   return (
     <>
+      <Helmet>
+        <title>Pulsefit | Classes</title>
+      </Helmet>
       <div className="mb-24">
         <div className="text-center space-y-5 mt-16 mb-16">
           <h2 className="text-5xl font-bold">Explore Our Classes </h2>

@@ -60,6 +60,14 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center">
+        <span className="loading loading-infinity loading-lg my-24 md:my-48 lg:my-96"></span>
+      </div>
+    );
+  }
+
   const authInfo = {
     user,
     setUser,

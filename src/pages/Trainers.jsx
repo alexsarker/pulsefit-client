@@ -2,6 +2,7 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import Banner from "../components/Banner";
 import SectionTitle from "../components/SectionTitle";
 import TrainerImg from "/src/assets/trainers/local.png";
+import { Helmet } from "react-helmet-async";
 
 const Trainers = () => {
   return (
@@ -9,6 +10,9 @@ const Trainers = () => {
       <Banner heading={"Our Trainers"} image={TrainerImg} />
 
       <div>
+        <Helmet>
+          <title>Pulsefit | Trainers</title>
+        </Helmet>
         <SectionTitle
           heading={"We Trained You to Gain"}
           subHeading={

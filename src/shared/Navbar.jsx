@@ -77,10 +77,14 @@ const Navbar = () => {
               className="mt-3 z-[20] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <Link to="/dashboard" className="justify-between">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="justify-between">
+                  User Profile
+                </Link>
               </li>
               <li>
                 <a

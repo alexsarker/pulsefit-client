@@ -6,6 +6,8 @@ import useAuth from "../hooks/useAuth";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, updateUserProfile, googleIn } = useAuth();
@@ -21,31 +23,56 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-      .then(() => {
-        updateUserProfile(data.name, data.photo).then(() => {
-          navigate(from, { replace: true });
-          toast.success("Registered Successfully");
-        });
-      })
-      .catch(() => {
-        toast.error("Already exist email!");
+    createUser(data.email, data.password).then(() => {
+      updateUserProfile(data.name, data.photo).then(() => {
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          photo: data.photo,
+        };
+        axios
+          .post("http://localhost:5000/users", userInfo)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.insertedId) {
+              navigate(from, { replace: true });
+              toast.success("Registered Successfully");
+            }
+          })
+          .catch(() => {
+            toast.error("Already exist email!");
+          });
       });
+    });
   };
 
   const handleGoogle = () => {
-    googleIn()
-      .then(() => {
-        navigate(from, { replace: true });
-        toast.success("Registered Successfully");
-      })
-      .catch(() => {
-        toast.error("Already Email Exist!");
-      });
+    googleIn().then((result) => {
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+        photo: result.user?.photoURL,
+      };
+      axios
+        .post("http://localhost:5000/users", userInfo)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            navigate(from, { replace: true });
+            toast.success("Registered Successfully");
+          }
+        })
+        .catch(() => {
+          toast.error("Already exist email!");
+        });
+    });
   };
 
   return (
     <>
+      <Helmet>
+        <title>Pulsefit | Register</title>
+      </Helmet>
       <div className="hero">
         <div className="hero-content flex-col md:gap-20 lg:gap-40 lg:flex-row-reverse mb-24">
           <img src={Img} alt="Image" />

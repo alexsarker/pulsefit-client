@@ -6,6 +6,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signUser, googleIn } = useAuth();
@@ -43,6 +44,9 @@ const Login = () => {
   };
   return (
     <>
+          <Helmet>
+        <title>Pulsefit | Login</title>
+      </Helmet>
       <div className="hero">
         <div className="hero-content flex-col md:gap-20 lg:gap-40 lg:flex-row-reverse mb-24">
           <img src={Img2} alt="Image" />
