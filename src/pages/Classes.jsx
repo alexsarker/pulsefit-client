@@ -1,9 +1,25 @@
 import { Helmet } from "react-helmet-async";
-import useClass from "../hooks/useClass";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useClass from "../hooks/useClass";
 
 const Classes = () => {
   const [classesData] = useClass("");
+  const [search, setSearch] = useState("");
+  const [filteredClasses, setFilteredClasses] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 4;
+
+  useEffect(() => {
+    const filtered = classesData.filter(classItem =>
+      classItem.className.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredClasses(filtered);
+    setCurrentPage(0);
+  }, [search, classesData]);
+
+  const totalPages = Math.ceil(filteredClasses.length / itemsPerPage);
+  const paginatedClasses = filteredClasses.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
   return (
     <>
@@ -17,7 +33,13 @@ const Classes = () => {
             Find the Perfect Class to Meet Your Fitness Goals
           </p>
           <label className="input input-bordered w-96 mx-auto flex items-center gap-2">
-            <input type="text" className="grow" placeholder="Search" />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -33,7 +55,7 @@ const Classes = () => {
           </label>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {classesData.map((classItem) => (
+          {paginatedClasses.map((classItem) => (
             <Link
               to={`classes/${classItem._id}`}
               key={classItem._id}
@@ -77,10 +99,15 @@ const Classes = () => {
           ))}
         </div>
         <div className="join mt-12 flex justify-center">
-          <button className="join-item btn btn-active">1</button>
-          <button className="join-item btn">2</button>
-          <button className="join-item btn">3</button>
-          <button className="join-item btn">4</button>
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              className={`join-item btn ${index === currentPage ? "btn-active bg-piccolo text-white hover:bg-[#2A2473]" : "bg-transparent hover:bg-[#4E46B41F]"}`}
+              onClick={() => setCurrentPage(index)}
+            >
+              {index + 1}
+            </button>
+          ))}
         </div>
       </div>
     </>

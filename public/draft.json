@@ -1,0 +1,267 @@
+[
+  {
+    "name": "Jane Doe",
+    "experience": "5",
+    "profileImage": "https://i.ibb.co/TMwhZwQ/6.png",
+    "role": "Trainer",
+    "skills": ["CrossFit", "Spinning", "Functional Training"],
+    "bio": "Jane is a highly skilled fitness instructor specializing in CrossFit, spinning, and functional training. With her 5 years of experience, she has helped numerous clients achieve their fitness goals.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified CrossFit Trainer",
+        "Spinning Instructor Certification"
+      ],
+      "achievements": [
+        "Winner of Fitness Competition 2019",
+        "Featured in Health Magazine's 'Top Trainers'"
+      ],
+      "philosophy": "Jane believes in holistic wellness and strives to motivate her clients to achieve balance in mind, body, and spirit."
+    },
+    "phone": "+1234567890",
+    "email": "janedoe@example.com",
+    "location": "New York, USA",
+    "availableSlots": [{ "day": "Monday", "time": "1:00 PM - 3:00 PM" }]
+  },
+  {
+    "name": "John Smith",
+    "experience": "8",
+    "profileImage": "https://i.ibb.co/LnntH9x/2.png",
+    "role": "Trainer",
+    "skills": ["HIIT", "Weightlifting", "Functional Training"],
+    "bio": "John is a passionate fitness coach with expertise in HIIT, weightlifting, and functional training. With 8 years of experience, he has empowered countless individuals to achieve their fitness goals.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Personal Trainer",
+        "HIIT Specialist Certification"
+      ],
+      "achievements": [
+        "Winner of Weightlifting Championship 2017",
+        "Featured in Muscle & Fitness Magazine"
+      ],
+      "philosophy": "John believes in the importance of consistency and dedication in fitness. He encourages his clients to push their limits and strive for continuous improvement."
+    },
+    "phone": "+1234567891",
+    "email": "johnsmith@example.com",
+    "location": "Los Angeles, USA",
+    "availableSlots": [
+      { "day": "Wednesday", "time": "9:00 AM - 11:00 AM" },
+      { "day": "Wednesday", "time": "2:00 PM - 4:00 PM" }
+    ]
+  },
+  {
+    "name": "Elita Howard",
+    "experience": "10",
+    "profileImage": "https://i.ibb.co/YWYgR2w/7.png",
+    "role": "Trainer",
+    "skills": ["CrossFit", "Spinning", "Functional Training"],
+    "bio": "Elita is a seasoned fitness trainer with over a decade of experience in the industry. She specializes in CrossFit, spinning, and functional training, and has helped numerous clients transform their lives through fitness.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified CrossFit Trainer",
+        "Spinning Instructor Certification"
+      ],
+      "achievements": [
+        "Winner of CrossFit Games 2015",
+        "Featured in Fitness Magazine's 'Top Trainers'"
+      ],
+      "philosophy": "Elita believes in the power of perseverance and consistency. She motivates her clients to challenge themselves and embrace discomfort as a path to growth."
+    },
+    "phone": "+1234567892",
+    "email": "elitahoward@example.com",
+    "location": "Chicago, USA",
+    "availableSlots": [{ "day": "Monday", "time": "1:00 PM - 3:00 PM" }]
+  },
+  {
+    "name": "Sarah Wilson",
+    "experience": "7",
+    "profileImage": "https://i.ibb.co/NCJf5hg/5.png",
+    "role": "Trainer",
+    "skills": ["HIIT", "Pilates", "Yoga"],
+    "bio": "Sarah is a dedicated fitness instructor with 7 years of experience. She specializes in HIIT, Pilates, and yoga, and is passionate about helping individuals achieve their fitness goals and lead healthier lifestyles.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Personal Trainer",
+        "Pilates Instructor Certification"
+      ],
+      "achievements": [
+        "Finalist in Yoga Championship 2018",
+        "Published in Yoga Journal"
+      ],
+      "philosophy": "Sarah emphasizes the importance of balance and mindfulness in fitness. She believes in tailoring workouts to individual needs and promoting overall well-being."
+    },
+    "phone": "+1234567893",
+    "email": "sarahwilson@example.com",
+    "location": "Miami, USA",
+    "availableSlots": [{ "day": "Tuesday", "time": "8:00 AM - 10:00 AM" }]
+  },
+  {
+    "name": "Emily Davis",
+    "experience": "6",
+    "profileImage": "https://i.ibb.co/tmkmt5Z/12.png",
+    "role": "Trainer",
+    "skills": ["Strength Training", "Yoga", "Dance Fitness"],
+    "bio": "Emily is a versatile fitness trainer with 6 years of experience. She excels in strength training, yoga, and dance fitness, and is dedicated to helping clients achieve their fitness goals in a fun and supportive environment.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Strength and Conditioning Specialist",
+        "Registered Yoga Teacher"
+      ],
+      "achievements": [
+        "Winner of Dance Competition 2017",
+        "Featured in Yoga Magazine"
+      ],
+      "philosophy": "Emily believes in the transformative power of movement. She aims to inspire her clients to discover joy in fitness and embrace a healthy lifestyle."
+    },
+    "phone": "+1234567894",
+    "email": "emilydavis@example.com",
+    "location": "San Francisco, USA",
+    "availableSlots": [
+      { "day": "Wednesday", "time": "10:00 AM - 12:00 PM" },
+      { "day": "Thursday", "time": "2:00 PM - 4:00 PM" }
+    ]
+  },
+  {
+    "name": "Tom Johnson",
+    "experience": "4",
+    "profileImage": "https://i.ibb.co/85HRNj5/8.png",
+    "role": "Trainer",
+    "skills": ["CrossFit", "Strength Training", "Cardio"],
+    "bio": "Tom is a dynamic fitness coach with 4 years of experience. He specializes in CrossFit, strength training, and cardio workouts, and is passionate about helping clients push their limits and achieve their fitness potential.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified CrossFit Trainer",
+        "ACE Certified Personal Trainer"
+      ],
+      "achievements": [
+        "Finalist in CrossFit Open 2020",
+        "Published in Fitness Magazine"
+      ],
+      "philosophy": "Tom believes in the importance of discipline and dedication in fitness. He encourages his clients to embrace challenges and pursue excellence in all aspects of their lives."
+    },
+    "phone": "+1234567895",
+    "email": "tomjohnson@example.com",
+    "location": "Seattle, USA",
+    "availableSlots": [{ "day": "Monday", "time": "3:00 PM - 5:00 PM" }]
+  },
+  {
+    "name": "Anna Lee",
+    "experience": "6",
+    "profileImage": "https://i.ibb.co/PD2szy7/3.png",
+    "role": "Trainer",
+    "skills": ["Zumba", "Dance Cardio", "Pilates"],
+    "bio": "Anna is a vibrant fitness instructor with 6 years of experience. She specializes in Zumba, dance cardio, and Pilates, and is dedicated to creating fun and energetic workouts that inspire her clients to move and groove.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Zumba Instructor",
+        "Pilates Mat Certification"
+      ],
+      "achievements": [
+        "Winner of Zumba Dance-Off 2016",
+        "Featured in Dance Fitness Magazine"
+      ],
+      "philosophy": "Anna believes in the power of dance to uplift and energize. She aims to create a supportive and inclusive environment where everyone feels empowered to express themselves through movement."
+    },
+    "phone": "+1234567896",
+    "email": "annalee@example.com",
+    "location": "Houston, USA",
+    "availableSlots": [{ "day": "Tuesday", "time": "10:00 AM - 12:00 PM" }]
+  },
+  {
+    "name": "Lisa Turner",
+    "experience": "9",
+    "profileImage": "https://i.ibb.co/Qbh2kCq/13.png",
+    "role": "Trainer",
+    "skills": ["Pilates", "Kettlebell", "Yoga"],
+    "bio": "Lisa is a dedicated fitness enthusiast with 9 years of experience. She specializes in Pilates, kettlebell training, and yoga, and is committed to helping her clients achieve their fitness goals and improve their overall well-being through mindful movement.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Pilates Instructor",
+        "Kettlebell Training Certification",
+        "Registered Yoga Teacher"
+      ],
+      "achievements": [
+        "Winner of Kettlebell Competition 2018",
+        "Featured in Yoga International"
+      ],
+      "philosophy": "Lisa advocates for a balanced approach to fitness, emphasizing the importance of strength, flexibility, and mental clarity. She believes in empowering her clients to embrace their full potential and live vibrant, fulfilling lives."
+    },
+    "phone": "+1234567897",
+    "email": "lisaturner@example.com",
+    "location": "Los Angeles, USA",
+    "availableSlots": [{ "day": "Thursday", "time": "9:00 AM - 11:00 AM" }]
+  },
+  {
+    "name": "John Smith",
+    "experience": "8",
+    "profileImage": "https://i.ibb.co/LnntH9x/2.png",
+    "role": "Trainer",
+    "skills": ["HIIT", "Strength Training", "Boxing"],
+    "bio": "John is a seasoned fitness coach with 8 years of experience. He specializes in HIIT, strength training, and boxing, and is passionate about helping clients push their limits and achieve their fitness goals.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Personal Trainer",
+        "Boxing Coach Certification"
+      ],
+      "achievements": [
+        "Finalist in Bodybuilding Competition 2017",
+        "Published in Men's Health Magazine"
+      ],
+      "philosophy": "John believes in the transformative power of fitness to build resilience and confidence. He encourages his clients to embrace challenges and strive for continuous improvement in all areas of their lives."
+    },
+    "phone": "+1234567898",
+    "email": "johnsmith@example.com",
+    "location": "Dallas, USA",
+    "availableSlots": [{ "day": "Friday", "time": "8:00 AM - 10:00 AM" }]
+  },
+  {
+    "name": "Lisa White",
+    "experience": "7",
+    "profileImage": "https://i.ibb.co/87QSCV2/14.png",
+    "role": "Trainer",
+    "skills": ["Yoga", "Pilates", "Meditation"],
+    "bio": "Lisa is a compassionate yoga instructor with 7 years of experience. She specializes in yoga, Pilates, and meditation, and is dedicated to helping her clients achieve physical and mental well-being through mindful movement and relaxation.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Yoga Instructor",
+        "Pilates Mat Certification",
+        "Mindfulness Meditation Teacher Training"
+      ],
+      "achievements": [
+        "Winner of Yoga Competition 2019",
+        "Featured in Yoga Journal"
+      ],
+      "philosophy": "Lisa believes in the power of yoga and meditation to cultivate inner peace and harmony. She strives to create a supportive and nurturing environment where individuals can explore their practice and connect with their inner selves."
+    },
+    "phone": "+1234567899",
+    "email": "lisawhite@example.com",
+    "location": "Austin, USA",
+    "availableSlots": [{ "day": "Monday", "time": "9:00 AM - 11:00 AM" }]
+  },
+  {
+    "name": "Michael Brown",
+    "experience": "8",
+    "profileImage": "https://i.ibb.co/qymFt2M/15.png",
+    "role": "Trainer",
+    "skills": ["Functional Training", "Cardio", "Nutrition Coaching"],
+    "bio": "Michael is a knowledgeable fitness coach with 8 years of experience. He specializes in functional training, cardio workouts, and nutrition coaching, and is passionate about empowering individuals to take control of their health and fitness.",
+    "comprehensiveInformation": {
+      "certifications": [
+        "Certified Personal Trainer",
+        "Nutrition Coach Certification",
+        "Functional Movement Specialist"
+      ],
+      "achievements": [
+        "Recipient of Fitness Excellence Award 2016",
+        "Published Author of 'Nutrition Essentials'"
+      ],
+      "philosophy": "Michael believes in a holistic approach to fitness, integrating exercise, nutrition, and lifestyle habits to optimize health and well-being. He is dedicated to educating and inspiring his clients to make sustainable changes for lifelong wellness."
+    },
+    "phone": "+1234567800",
+    "email": "michaelbrown@example.com",
+    "location": "Denver, USA",
+    "availableSlots": [
+      { "day": "Wednesday", "time": "11:00 AM - 1:00 PM" },
+      { "day": "Friday", "time": "3:00 PM - 5:00 PM" }
+    ]
+  }
+]
