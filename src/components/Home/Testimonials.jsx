@@ -1,111 +1,72 @@
 import { RiDoubleQuotesL } from "react-icons/ri";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+import useTestimonials from "/src/hooks/useTestimonials.jsx";
+
 
 const Testimonials = () => {
+  const [useTestimonialsData] = useTestimonials();
+
   return (
     <div className="mb-24">
       <h2 className="text-center text-4xl font-bold pb-6">Testimonials</h2>
-
-      <div className="carousel gap-5 rounded-none max-w-full flex justify-center">
-        <div className="carousel-item">
-          <div className="card card-side bg-jiren">
-            <div className="avatar">
-              <div className="w-32 rounded-full m-12">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+      <Swiper
+        slidesPerView={2}
+        navigation={true}
+        spaceBetween={24}
+        modules={[Navigation]}
+        breakpoints={{
+          425: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 1,
+          },
+          1024: {
+            slidesPerView: 2,
+          },
+          1280: {
+            slidesPerView: 2,
+          },
+        }}
+        className="mySwiper"
+      >
+        {useTestimonialsData.map((testimonial, index) => (
+          <SwiperSlide key={index}>
+            <div className="card card-side bg-jiren">
+              <div className="avatar">
+                <div className="w-32 rounded-full m-12">
+                  <img src={testimonial.imageURL} alt={testimonial.name} />
+                </div>
+                <RiDoubleQuotesL className="absolute top-14 right-36 text-4xl text-white p-2 border-piccolo rounded-full bg-piccolo" />
               </div>
-              <RiDoubleQuotesL className="absolute top-14 right-36 text-4xl text-white p-2 border-piccolo rounded-full bg-piccolo" />
-            </div>
-            <div className="divider divider-horizontal py-8" />
-            <div className="card-body">
-              <div>
-                <h2 className="card-title">Nattasha</h2>
-                <p>Athletics /Trainer</p>
-              </div>
-              <div className="rating">
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
+              <div className="divider divider-horizontal py-8" />
+              <div className="card-body">
+                <div>
+                  <h2 className="card-title">{testimonial.name}</h2>
+                  <p>Member</p>
+                </div>
+                <Rating
+                  style={{ maxWidth: 100 }}
+                  value={testimonial.ratings}
+                  readOnly
                 />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                  defaultChecked
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-              </div>
-              <p className="max-w-96 text-trunks font-medium">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="card card-side bg-jiren">
-            <div className="avatar">
-              <div className="w-32 rounded-full m-10">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <p className="max-w-96 text-trunks font-medium items-stretch">
+                  {testimonial.feedback}
+                </p>
               </div>
             </div>
-            <div className="divider divider-horizontal py-8"></div>
-            <div className="card-body">
-              <div>
-                <h2 className="card-title">Nattasha</h2>
-                <p>Athletics /Trainer</p>
-              </div>
-              <div className="rating">
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                  defaultChecked
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-2"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-              </div>
-              <p className="max-w-96 text-trunks font-medium">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

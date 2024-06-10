@@ -4,6 +4,7 @@ import CommunityForums from "../components/Forum/CommunityForums";
 import forumImg from "/src/assets/forum/forumImg.png";
 
 const Forum = () => {
+
   return (
     <div>
       <Helmet>

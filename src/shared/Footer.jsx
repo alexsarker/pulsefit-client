@@ -6,8 +6,8 @@ const Footer = () => {
         <aside>
           <img src={Logo} alt="logoWhite" />
           <p className="max-w-72">
-            It is a long established fact that a reader will be distracted by
-            the readable.
+            PulseFit is a dynamic fitness platform dedicated to helping
+            individuals achieve their health and wellness goals.
           </p>
         </aside>
         <nav>
