@@ -3,11 +3,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import TimeSelector from "./TimeSelector";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ApplyForm = () => {
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     const formData = {
@@ -35,16 +36,14 @@ const ApplyForm = () => {
       },
       status: "pending",
     };
-    console.log(formData);
 
-    axios
-      .post("http://localhost:5000/apply", formData)
-      .then((res) => {
-        console.log(res.data);
+    axiosSecure
+      .post("/apply", formData)
+      .then(() => {
         toast.success("Application submitted successfully");
+        reset();
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         toast.error("Failed to submit application");
       });
   };
@@ -264,9 +263,7 @@ const ApplyForm = () => {
           </div>
 
           <div className="pt-20 col-span-2">
-            <h1 className="text-2xl font-semibold text-center">
-              Socials
-            </h1>
+            <h1 className="text-2xl font-semibold text-center">Socials</h1>
             <div className="divider"></div>
           </div>
 

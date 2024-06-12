@@ -7,13 +7,14 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, updateUserProfile, googleIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
 
   const {
@@ -30,8 +31,8 @@ const Register = () => {
           email: data.email,
           photo: data.photo,
         };
-        axios
-          .post("http://localhost:5000/users", userInfo)
+        axiosPublic
+          .post("/users", userInfo)
           .then((res) => {
             console.log(res.data);
             if (res.data.insertedId) {
@@ -53,8 +54,8 @@ const Register = () => {
         name: result.user?.displayName,
         photo: result.user?.photoURL,
       };
-      axios
-        .post("http://localhost:5000/users", userInfo)
+      axiosPublic
+        .post("/users", userInfo)
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {

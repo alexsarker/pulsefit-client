@@ -1,14 +1,13 @@
-import axios from "axios";
 import Frame from "/src/assets/hero/Frame.svg";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { format } from "date-fns";
 import { useState } from "react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const NewsletterForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [success, setSuccess] = useState();
-  const axiosSecure = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const today = new Date();
   const formattedDate = format(today, "MMMM d, yyyy");
@@ -21,9 +20,10 @@ const NewsletterForm = () => {
       date: formattedDate,
     };
     setSuccess("");
-    axiosSe.post("http://localhost:5000/subscribes", emailInfo).then((res) => {
+    axiosSecure.post("/subscribes", emailInfo).then((res) => {
       if (res.data.insertedId) {
         setSuccess("Subscribed Successfully");
+        reset();
         return;
       }
     });
