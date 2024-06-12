@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { format } from "date-fns";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const NewsletterForm = () => {
   const { register, handleSubmit } = useForm();
   const [success, setSuccess] = useState();
+  const axiosSecure = useAxiosPublic();
   const { user } = useAuth();
   const today = new Date();
   const formattedDate = format(today, "MMMM d, yyyy");
@@ -19,7 +21,7 @@ const NewsletterForm = () => {
       date: formattedDate,
     };
     setSuccess("");
-    axios.post("http://localhost:5000/subscribes", emailInfo).then((res) => {
+    axiosSe.post("http://localhost:5000/subscribes", emailInfo).then((res) => {
       if (res.data.insertedId) {
         setSuccess("Subscribed Successfully");
         return;
