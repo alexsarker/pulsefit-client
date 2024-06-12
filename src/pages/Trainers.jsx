@@ -27,7 +27,11 @@ const Trainers = () => {
         <div className="mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center">
             {trainersData.map((trainer) => (
-              <Link to={`/trainers/${trainer._id}`} key={trainer._id} className="card w-80 bg-piccolo">
+              <Link
+                to={`/trainers/${trainer._id}`}
+                key={trainer._id}
+                className="card w-80 bg-piccolo"
+              >
                 <figure>
                   <img
                     src={trainer.profileImage}
@@ -35,7 +39,7 @@ const Trainers = () => {
                     className="w-80 h-72 object-cover"
                   />
                 </figure>
-                <div className="card-body h-60 divide-y-2 divide-[#FF4E64] space-y-2">
+                <div className="card-body h-64 divide-y-2 divide-[#FF4E64] space-y-2">
                   <div className="flex justify-between items-center text-white">
                     <h2 className="card-title text-xl">{trainer.name}</h2>
                     <div className="flex gap-2 text-white">
@@ -56,15 +60,9 @@ const Trainers = () => {
                       {trainer.skills.join(", ")}
                     </p>
                     <p className="text-white">
-                      <span className="font-semibold text-hit">Slots:</span>{" "}
-                      {trainer.availableSlots
-                        .reduce((uniqueDays, slot) => {
-                          if (!uniqueDays.includes(slot.day)) {
-                            uniqueDays.push(slot.day);
-                          }
-                          return uniqueDays;
-                        }, [])
-                        .join(", ")}
+                      <span className="font-semibold text-hit">Slots: </span>
+                      {trainer.availableSlots.day},{" "}
+                      {trainer.availableSlots.time}
                     </p>
                   </div>
                 </div>

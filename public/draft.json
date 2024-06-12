@@ -20,7 +20,7 @@
     "phone": "+1234567890",
     "email": "janedoe@example.com",
     "location": "New York, USA",
-    "availableSlots": [{ "day": "Monday", "time": "1:00 PM - 3:00 PM" }]
+    "availableSlots": { "day": "Monday", "time": "1:00 PM - 3:00 PM" }
   },
   {
     "name": "John Smith",
@@ -43,10 +43,7 @@
     "phone": "+1234567891",
     "email": "johnsmith@example.com",
     "location": "Los Angeles, USA",
-    "availableSlots": [
-      { "day": "Wednesday", "time": "9:00 AM - 11:00 AM" },
-      { "day": "Wednesday", "time": "2:00 PM - 4:00 PM" }
-    ]
+    "availableSlots": { "day": "Wednesday", "time": "9:00 AM - 11:00 AM" }
   },
   {
     "name": "Elita Howard",
@@ -69,7 +66,7 @@
     "phone": "+1234567892",
     "email": "elitahoward@example.com",
     "location": "Chicago, USA",
-    "availableSlots": [{ "day": "Monday", "time": "1:00 PM - 3:00 PM" }]
+    "availableSlots": { "day": "Monday", "time": "1:00 PM - 3:00 PM" }
   },
   {
     "name": "Sarah Wilson",
@@ -92,7 +89,7 @@
     "phone": "+1234567893",
     "email": "sarahwilson@example.com",
     "location": "Miami, USA",
-    "availableSlots": [{ "day": "Tuesday", "time": "8:00 AM - 10:00 AM" }]
+    "availableSlots": { "day": "Tuesday", "time": "8:00 AM - 10:00 AM" }
   },
   {
     "name": "Emily Davis",
@@ -115,10 +112,7 @@
     "phone": "+1234567894",
     "email": "emilydavis@example.com",
     "location": "San Francisco, USA",
-    "availableSlots": [
-      { "day": "Wednesday", "time": "10:00 AM - 12:00 PM" },
-      { "day": "Thursday", "time": "2:00 PM - 4:00 PM" }
-    ]
+    "availableSlots": { "day": "Wednesday", "time": "10:00 AM - 12:00 PM" }
   },
   {
     "name": "Tom Johnson",
@@ -141,7 +135,7 @@
     "phone": "+1234567895",
     "email": "tomjohnson@example.com",
     "location": "Seattle, USA",
-    "availableSlots": [{ "day": "Monday", "time": "3:00 PM - 5:00 PM" }]
+    "availableSlots": { "day": "Monday", "time": "3:00 PM - 5:00 PM" }
   },
   {
     "name": "Anna Lee",
@@ -164,7 +158,7 @@
     "phone": "+1234567896",
     "email": "annalee@example.com",
     "location": "Houston, USA",
-    "availableSlots": [{ "day": "Tuesday", "time": "10:00 AM - 12:00 PM" }]
+    "availableSlots": { "day": "Tuesday", "time": "10:00 AM - 12:00 PM" }
   },
   {
     "name": "Lisa Turner",
@@ -188,7 +182,7 @@
     "phone": "+1234567897",
     "email": "lisaturner@example.com",
     "location": "Los Angeles, USA",
-    "availableSlots": [{ "day": "Thursday", "time": "9:00 AM - 11:00 AM" }]
+    "availableSlots": { "day": "Thursday", "time": "9:00 AM - 11:00 AM" }
   },
   {
     "name": "John Smith",
@@ -211,12 +205,12 @@
     "phone": "+1234567898",
     "email": "johnsmith@example.com",
     "location": "Dallas, USA",
-    "availableSlots": [{ "day": "Friday", "time": "8:00 AM - 10:00 AM" }]
+    "availableSlots": { "day": "Friday", "time": "8:00 AM - 10:00 AM" }
   },
   {
     "name": "Lisa White",
     "experience": "7",
-    "profileImage": "https://i.ibb.co/87QSCV2/14.png",
+    "profileImage": "https://i.ibb.co/KrTv4Ts/Frame-6897-2.png",
     "role": "Trainer",
     "skills": ["Yoga", "Pilates", "Meditation"],
     "bio": "Lisa is a compassionate yoga instructor with 7 years of experience. She specializes in yoga, Pilates, and meditation, and is dedicated to helping her clients achieve physical and mental well-being through mindful movement and relaxation.",
@@ -235,12 +229,12 @@
     "phone": "+1234567899",
     "email": "lisawhite@example.com",
     "location": "Austin, USA",
-    "availableSlots": [{ "day": "Monday", "time": "9:00 AM - 11:00 AM" }]
+    "availableSlots": { "day": "Monday", "time": "9:00 AM - 11:00 AM" }
   },
   {
     "name": "Michael Brown",
     "experience": "8",
-    "profileImage": "https://i.ibb.co/qymFt2M/15.png",
+    "profileImage": "https://i.ibb.co/ZStfSKr/Frame-6897.png",
     "role": "Trainer",
     "skills": ["Functional Training", "Cardio", "Nutrition Coaching"],
     "bio": "Michael is a knowledgeable fitness coach with 8 years of experience. He specializes in functional training, cardio workouts, and nutrition coaching, and is passionate about empowering individuals to take control of their health and fitness.",
@@ -259,9 +253,6 @@
     "phone": "+1234567800",
     "email": "michaelbrown@example.com",
     "location": "Denver, USA",
-    "availableSlots": [
-      { "day": "Wednesday", "time": "11:00 AM - 1:00 PM" },
-      { "day": "Friday", "time": "3:00 PM - 5:00 PM" }
-    ]
+    "availableSlots": { "day": "Wednesday", "time": "11:00 AM - 1:00 PM" }
   }
 ]

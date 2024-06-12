@@ -101,20 +101,19 @@ const TrainerDetail = () => {
         <div className="h-full p-10 border border-beerus rounded-2xl">
           <h2 className="font-bold text-xl pb-8 w-96">Available Slots</h2>
           <div className="space-y-4">
-            {trainer &&
-              trainer.availableSlots.map((slot, index) => (
-                <div className="flex justify-between items-center" key={index}>
-                  <p className="text-trunks">
-                    {slot.day}, {slot.time}
-                  </p>
-                  <Link
-                    to="#"
-                    className="btn btn-sm bg-piccolo text-white px-6 hover:bg-[#2A2473]"
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              ))}
+            {trainer && (
+              <div className="flex justify-between items-center">
+                <p className="text-trunks">
+                  {trainer.availableSlots.day}, {trainer.availableSlots.time}
+                </p>
+                <Link
+                  to="#"
+                  className="btn btn-sm bg-piccolo text-white px-6 hover:bg-[#2A2473]"
+                >
+                  Book Now
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
