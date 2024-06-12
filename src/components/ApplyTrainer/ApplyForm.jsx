@@ -1,19 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import { useState } from 'react';
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
-// import 'react-clock/dist/Clock.css';
 
 const ApplyForm = () => {
-  const [value, onChange] = useState(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     const formData = {
@@ -59,7 +49,6 @@ const ApplyForm = () => {
               {...register("fullName")}
             />
           </div>
-
           <div className="form-control">
             <h2 className="text-lg font-semibold pb-2">Age</h2>
             <input
@@ -72,7 +61,6 @@ const ApplyForm = () => {
               {...register("age")}
             />
           </div>
-
           <div className="form-control col-span-2 my-4">
             <h2 className="text-lg font-semibold">Skills</h2>
             <div className="grid grid-cols-2">
@@ -136,20 +124,12 @@ const ApplyForm = () => {
 
           <div className="form-control">
             <h2 className="text-lg font-semibold pb-2">Start Time</h2>
-            <div className="relative">
-            <TimePicker onChange={onChange} value={value} />
-            </div>
+
           </div>
+
           <div className="form-control">
             <h2 className="text-lg font-semibold pb-2">End Time</h2>
-            <div className="relative">
-              <input
-                type="time"
-                className="input input-bordered w-full"
-                required
-                {...register("endTime")}
-              />
-            </div>
+
           </div>
 
           <div className="form-control">
