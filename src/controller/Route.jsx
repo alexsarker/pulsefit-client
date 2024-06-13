@@ -11,7 +11,7 @@ import TrainerDetail from "../pages/TrainerDetail";
 import Subscription from "../pages/Subscription";
 import Payment from "../pages/Payment";
 import ApplyTrainer from "../pages/ApplyTrainer";
-import Dashboard from "../admin/Dashboard";
+import Dashboard from "./Dashboard";
 import UserProfile from "../pages/UserProfile";
 import AllTrainers from "../admin/adminPages/AllTrainers";
 import PrivateRoute from "./PrivateRoutes";
@@ -84,10 +84,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "adminBoard",
+    path: "dashBoard",
     element: <Dashboard />,
     errorElement: <ErrorPage />,
     children: [
+      // admin
       {
         path: "allTrainers",
         element: <AllTrainers />,
@@ -112,8 +113,19 @@ const router = createBrowserRouter([
         path: "finance",
         element: <Finance />,
       },
+
+      // trainer
+      {
+        path: "manageSlots",
+        element: <AllTrainers />,
+      },
+      {
+        path: "addForum",
+        element: <AllTrainers />,
+      },
     ],
   },
+  
 ]);
 
 export default router;
