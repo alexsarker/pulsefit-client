@@ -9,12 +9,18 @@ const Root = () => {
   return (
     <div>
       <ScrollRestoration />
-      <div className="container mx-auto">
-        <Navbar />
-        <Outlet />
-      </div>
+      {location.pathname === "/dashboard" ? (
+        <div>
+          <Outlet />
+        </div>
+      ) : (
+        <div className="container mx-auto">
+          <Navbar />
+          <Outlet />
+        </div>
+      )}
       {location.pathname === "/" && <Follow />}
-      <Footer />
+      {location.pathname === "/dashboard" ? "" : <Footer />}
     </div>
   );
 };

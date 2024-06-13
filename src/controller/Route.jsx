@@ -11,9 +11,15 @@ import TrainerDetail from "../pages/TrainerDetail";
 import Subscription from "../pages/Subscription";
 import Payment from "../pages/Payment";
 import ApplyTrainer from "../pages/ApplyTrainer";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../admin/Dashboard";
 import UserProfile from "../pages/UserProfile";
-// import PrivateRoute from "./PrivateRoute";
+import AllTrainers from "../admin/adminPages/AllTrainers";
+import PrivateRoute from "./PrivateRoutes";
+import AllForums from "../admin/adminPages/AllForums";
+import AllClasses from "../admin/adminPages/AllClasses";
+import AppliedTrainers from "../admin/adminPages/AppliedTrainers";
+import Subscribers from "../admin/adminPages/Subscribers";
+import Finance from "../admin/adminPages/Finance";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/trainers/:id",
-        element: <TrainerDetail />,
+        element: (
+          <PrivateRoute>
+            <TrainerDetail />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/trainers/${params.id}`),
       },
@@ -70,6 +80,37 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <UserProfile />,
+      },
+    ],
+  },
+  {
+    path: "adminBoard",
+    element: <Dashboard />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "allTrainers",
+        element: <AllTrainers />,
+      },
+      {
+        path: "allForums",
+        element: <AllForums />,
+      },
+      {
+        path: "allClasses",
+        element: <AllClasses />,
+      },
+      {
+        path: "appliedTrainers",
+        element: <AppliedTrainers />,
+      },
+      {
+        path: "subscribers",
+        element: <Subscribers />,
+      },
+      {
+        path: "finance",
+        element: <Finance />,
       },
     ],
   },
