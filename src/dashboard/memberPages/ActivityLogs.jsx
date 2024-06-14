@@ -2,8 +2,11 @@ import { HiOutlineEye } from "react-icons/hi2";
 import Breadcrumbs from "../../components/DashComp/Breadcrumbs";
 import DashTitle from "../../components/DashComp/DashTitle";
 import { AiOutlineClose } from "react-icons/ai";
+import useApply from "../../hooks/useApply";
 
 const ActivityLogs = () => {
+  const { applyData } = useApply();
+
   return (
     <div>
       <Breadcrumbs routeName={"Activity logs"} router={"/dashboard/logs"} />
@@ -25,9 +28,21 @@ const ActivityLogs = () => {
           </thead>
           <tbody>
             <tr>
-              <td>June 1, 2024</td>
+              <td>{applyData.appliedDate}</td>
               <td>Trainer</td>
-              <td>Pending</td>
+              <td
+                className={
+                  applyData.status === "Pending"
+                    ? "text-whis"
+                    : applyData.status === "Approved"
+                    ? "text-roshi"
+                    : applyData.status === "Rejected"
+                    ? "text-dodoria"
+                    : ""
+                }
+              >
+                {applyData.status}
+              </td>
               <td>
                 <div className="flex space-x-8 justify-center">
                   <HiOutlineEye
@@ -41,15 +56,14 @@ const ActivityLogs = () => {
                     <div className="modal-box">
                       <h3 className="font-bold text-lg">Admin’s Feedback</h3>
                       <p className="py-4 text-trunks text-base">
-                        Thank you for your interest in becoming a trainer with
-                        us. After careful review, we have decided not to move
-                        forward with your application at this time. Sorry to say
-                        we are forward with other candidate right now.
+                        {/* {applyData.feedback} */}
                       </p>
                       <div className="modal-action">
                         <form method="dialog">
                           {/* if there is a button in form, it will close the modal */}
-                          <button className="btn btn-sm bg-dodoria text-white">Close</button>
+                          <button className="btn btn-sm bg-dodoria text-white">
+                            Close
+                          </button>
                         </form>
                       </div>
                     </div>

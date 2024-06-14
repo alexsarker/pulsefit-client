@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
     }).then(() => {
       setUser({ ...user, displayName: name, photoURL: photo });
     });
-  };
+  };  
 
   const signUser = (email, password) => {
     setLoading(true);

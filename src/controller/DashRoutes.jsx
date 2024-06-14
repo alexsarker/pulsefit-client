@@ -197,7 +197,7 @@ const Dashboard = () => {
                   <img
                     src={user.photoURL}
                     alt="user photo"
-                    className="w-14 avatar rounded-full"
+                    className="w-14 h-14 avatar rounded-full"
                   />
                   <span className="text-base">{user.displayName}</span>
                 </Link>

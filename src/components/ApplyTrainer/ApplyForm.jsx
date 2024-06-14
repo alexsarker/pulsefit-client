@@ -11,6 +11,12 @@ const ApplyForm = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
+    const today = new Date();
+    const month = today.getMonth()+1;
+    const year = today.getFullYear();
+    const date = today. getDate();
+    const currentDate = month + "/" + date + "/" + year;
+
     const formData = {
       name: data.name,
       email: user.email,
@@ -21,6 +27,7 @@ const ApplyForm = () => {
       endTime: data.endTime,
       experience: data.experience,
       day: data.day,
+      appliedDate: currentDate, 
       bio: data.bio,
       comprehensiveInformation: {
         certifications: data.certifications,
@@ -34,7 +41,7 @@ const ApplyForm = () => {
         instagram: data.instagram,
         twitter: data.twitter,
       },
-      status: "pending",
+      status: "Pending",
     };
 
     axiosSecure

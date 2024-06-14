@@ -11,7 +11,7 @@ const DashBan = () => {
       }}
     >
       <div className="hero-content mr-[800px]">
-        <div className="max-w-lg space-y-4">
+        <div className="max-w-3xl space-y-4">
           <h1 className="text-5xl font-bold">Welcome, {user.displayName}!</h1>
           <p className="text-trunks">
             Here's what's going on with your campaigns to see and explore.

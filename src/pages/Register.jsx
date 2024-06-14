@@ -23,29 +23,25 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    createUser(data.email, data.password).then(() => {
-      updateUserProfile(data.name, data.photo).then(() => {
-        const userInfo = {
-          name: data.name,
-          email: data.email,
-          photo: data.photo,
-          role: "member",
-        };
-        axiosPublic
-          .post("/users", userInfo)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.insertedId) {
-              navigate(from, { replace: true });
-              toast.success("Registered Successfully");
-            }
-          })
-          .catch(() => {
-            toast.error("Already exist email!");
-          });
-      });
-    });
+  const onSubmit = async (data) => {
+    try {
+      await createUser(data.email, data.password);
+      await updateUserProfile(data.name, data.photo);
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        photo: data.photo,
+        role: "Member",
+      };
+      const response = await axiosPublic.post("/users", userInfo);
+      if (response.data.insertedId) {
+        navigate(from, { replace: true });
+        toast.success("Registered Successfully");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Failed to register. Please try again later.");
+    }
   };
 
   const handleGoogle = () => {
@@ -59,7 +55,6 @@ const Register = () => {
       axiosPublic
         .post("/users", userInfo)
         .then((res) => {
-          console.log(res.data);
           if (res.data.insertedId) {
             navigate(from, { replace: true });
             toast.success("Registered Successfully");
