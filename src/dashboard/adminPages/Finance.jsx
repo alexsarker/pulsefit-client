@@ -1,6 +1,5 @@
 
-
-const AppliedTrainers = () => {
+const Finance = () => {
     return (
         <div>
             
@@ -8,4 +7,4 @@ const AppliedTrainers = () => {
     );
 };
 
-export default AppliedTrainers;
+export default Finance;

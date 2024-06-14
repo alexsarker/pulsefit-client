@@ -30,6 +30,7 @@ const Register = () => {
           name: data.name,
           email: data.email,
           photo: data.photo,
+          role: "member",
         };
         axiosPublic
           .post("/users", userInfo)
@@ -53,6 +54,7 @@ const Register = () => {
         email: result.user?.email,
         name: result.user?.displayName,
         photo: result.user?.photoURL,
+        role: "member",
       };
       axiosPublic
         .post("/users", userInfo)

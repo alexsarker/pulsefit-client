@@ -11,16 +11,20 @@ import TrainerDetail from "../pages/TrainerDetail";
 import Subscription from "../pages/Subscription";
 import Payment from "../pages/Payment";
 import ApplyTrainer from "../pages/ApplyTrainer";
-import Dashboard from "./Dashboard";
 import UserProfile from "../pages/UserProfile";
-import AllTrainers from "../admin/adminPages/AllTrainers";
 import PrivateRoute from "./PrivateRoutes";
-import AllForums from "../admin/adminPages/AllForums";
-import AllClasses from "../admin/adminPages/AllClasses";
-import AppliedTrainers from "../admin/adminPages/AppliedTrainers";
-import Subscribers from "../admin/adminPages/Subscribers";
-import Finance from "../admin/adminPages/Finance";
-
+import ManageSlots from "../dashboard/trainerPages/ManageSlots";
+import AddForum from "../dashboard/trainerPages/AddForum";
+import ActivityLogs from "../dashboard/memberPages/ActivityLogs";
+import BookedTrainers from "../dashboard/memberPages/BookedTrainers";
+import AllTrainers from "../dashboard/adminPages/AllTrainers";
+import AllForums from "../dashboard/adminPages/AllForums";
+import AllClasses from "../dashboard/adminPages/AllClasses";
+import AppliedTrainers from "../dashboard/adminPages/AppliedTrainers";
+import Subscribers from "../dashboard/adminPages/Subscribers";
+import Finance from "../dashboard/adminPages/Finance";
+import DashRoutes from "./DashRoutes";
+import Dashboard from "../dashboard/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,20 +78,21 @@ const router = createBrowserRouter([
         element: <Forum />,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "/profile",
         element: <UserProfile />,
       },
     ],
   },
   {
-    path: "dashBoard",
-    element: <Dashboard />,
+    path: "dashboard",
+    element: <DashRoutes />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+
       // admin
       {
         path: "allTrainers",
@@ -117,15 +122,24 @@ const router = createBrowserRouter([
       // trainer
       {
         path: "manageSlots",
-        element: <AllTrainers />,
+        element: <ManageSlots />,
       },
       {
         path: "addForum",
-        element: <AllTrainers />,
+        element: <AddForum />,
+      },
+
+      // member
+      {
+        path: "logs",
+        element: <ActivityLogs />,
+      },
+      {
+        path: "bookedTrainers",
+        element: <BookedTrainers />,
       },
     ],
   },
-  
 ]);
 
 export default router;
