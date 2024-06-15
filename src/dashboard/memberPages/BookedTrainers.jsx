@@ -29,7 +29,7 @@ const BookedTrainers = () => {
             <tr>
               <td>1</td>
               <td>
-                <div>
+                <div className="flex space-x-4 items-center">
                   <img src="" />
                   <p>Madison Roy</p>
                 </div>

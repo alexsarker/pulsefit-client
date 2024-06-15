@@ -25,6 +25,7 @@ import Subscribers from "../dashboard/adminPages/Subscribers";
 import Finance from "../dashboard/adminPages/Finance";
 import DashRoutes from "./DashRoutes";
 import Dashboard from "../dashboard/Dashboard";
+import AppTrainerDetail from "../dashboard/adminPages/AppTrainerDetail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "subscribers",
         element: <Subscribers />,
+      },
+      {
+        path: "appliedTrainerDetail",
+        element: <AppTrainerDetail />,
       },
       {
         path: "finance",
