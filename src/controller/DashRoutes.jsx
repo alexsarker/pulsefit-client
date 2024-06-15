@@ -37,7 +37,7 @@ const Dashboard = () => {
                 <img src={Logo} alt="logo" className="pb-4" />
               </div>
               {/* admin */}
-              {/* <div>
+              <div>
               <div>
                 <li>
                   <Link
@@ -109,7 +109,7 @@ const Dashboard = () => {
                   </Link>
                 </li>
               </div>
-            </div> */}
+            </div>
 
               {/* trainer */}
               {/* <div>
@@ -143,7 +143,7 @@ const Dashboard = () => {
             </div> */}
 
               {/* member */}
-              <div>
+              {/* <div>
                 <li>
                   <Link
                     to="/dashboard"
@@ -171,7 +171,7 @@ const Dashboard = () => {
                     <span>Booked Trainers</span>
                   </Link>
                 </li>
-              </div>
+              </div> */}
 
               <div className="divider"></div>
               <div>

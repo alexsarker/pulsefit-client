@@ -40,7 +40,7 @@ const UserProfile = () => {
           Manage Your Account Information and Preferences.
         </p>
       </div>
-      <div className="flex gap-12 p-10 border rounded-2xl w-max mx-auto">
+      <div className="flex gap-12 p-10 border rounded-2xl w-max mx-auto mb-12">
         <img
           src={user.photoURL}
           alt="photo image"
@@ -77,7 +77,7 @@ const UserProfile = () => {
         </form>
       </div>
 
-      <div className="p-10 border rounded-2xl w-max mx-auto">
+      <div className="p-10 border rounded-2xl w-96 mx-auto mb-24">
         <span className="flex items-center gap-4">
           <div className="badge badge-success badge-xs"></div>
           <h2 className="text-2xl">Last Login Status</h2>
