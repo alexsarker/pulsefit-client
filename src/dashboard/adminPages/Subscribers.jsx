@@ -1,8 +1,11 @@
 import Breadcrumbs from "../../components/DashComp/Breadcrumbs";
 import DashTitle from "../../components/DashComp/DashTitle";
 import { Toaster } from "react-hot-toast";
+import useSubscribe from "../../hooks/useSubscribe";
 
 const Subscribers = () => {
+  const [subsData] = useSubscribe();
+
   return (
     <div>
       <Breadcrumbs
@@ -16,7 +19,7 @@ const Subscribers = () => {
 
       <div className="overflow-x-auto mx-auto mt-12 border p-6 rounded-2xl">
         <table className="table">
-          {/* head */}
+          {/* Table head */}
           <thead>
             <tr className="text-piccolo text-base">
               <th>#</th>
@@ -25,21 +28,29 @@ const Subscribers = () => {
               <th>Date Subscribed</th>
             </tr>
           </thead>
+          {/* Table body */}
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <div className="flex space-x-4 items-center">
-                  <img src="" className="avatar rounded-full w-6 h-6" />
-                  <p>Corina McCoy</p>
-                </div>
-              </td>
-              <td>stephanienicol@outlook.com</td>
-              <td>May 30, 2024</td>
-            </tr>
+            {subsData.map((subscriber, index) => (
+              <tr key={subscriber._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex space-x-4 items-center">
+                    <img
+                      src={subscriber.photo}
+                      className="avatar rounded-full w-6 h-6"
+                      alt={subscriber.name}
+                    />
+                    <p>{subscriber.name}</p>
+                  </div>
+                </td>
+                <td>{subscriber.email}</td>
+                <td>{subscriber.date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
+      {/* Toaster component for displaying notifications */}
       <div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>

@@ -42,6 +42,7 @@ const ApplyForm = () => {
         twitter: data.twitter,
       },
       status: "Pending",
+      feedback: "",
     };
 
     axiosSecure
