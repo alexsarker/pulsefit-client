@@ -6,17 +6,37 @@ import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllTrainers = () => {
-  const [trainersData] = useTrainer();
+  const [trainersData, refetch] = useTrainer();
   const axiosSecure = useAxiosSecure();
   const filteredTrainers = trainersData.filter(
     (trainer) => trainer.role === "Trainer"
   );
 
   const handleDelete = (trainer) => {
-    console.log(trainer._id);
+    axiosSecure
+      .delete(`/trainers/${trainer._id}`)
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          const roleData = {
+            role: "Member",
+          };
+          axiosSecure
+            .patch(`/user/email/${trainer.email}`, roleData)
+            .then(() => {
+              refetch();
+              toast.success("Trainer deleted successfully");
+            })
+            .catch(() => {
+              toast.error("Failed to update user role");
+            });
+        } else {
+          toast.error("Failed to delete trainer");
+        }
+      })
+      .catch(() => {
+        toast.error("An error occurred while deleting the trainer");
+      });
   };
-
-  // trainer->delete, user->patch, 
 
   return (
     <div>
@@ -63,9 +83,38 @@ const AllTrainers = () => {
                 <td>
                   <div className="flex space-x-8 justify-center">
                     <AiOutlineDelete
-                      onClick={() => handleDelete(trainer)}
+                      onClick={() =>
+                        document.getElementById(`my_modal_1_${trainer._id}`).showModal()
+                      }
                       className="text-2xl text-dodoria cursor-pointer"
                     />
+                    <dialog id={`my_modal_1_${trainer._id}`} className="modal">
+                      <div className="modal-box">
+                        <h3 className="font-bold text-lg">Confirm Deletion</h3>
+                        <p>Are you sure you want to delete this trainer?</p>
+                        <div className="modal-action">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              handleDelete(trainer);
+                              document.getElementById(`my_modal_1_${trainer._id}`).close();
+                            }}
+                            className="btn btn-sm text-white bg-chichi"
+                          >
+                            Delete
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              document.getElementById(`my_modal_1_${trainer._id}`).close()
+                            }
+                            className="btn btn-sm ml-4"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </dialog>
                   </div>
                 </td>
               </tr>

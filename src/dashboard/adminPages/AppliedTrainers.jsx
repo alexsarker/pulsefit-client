@@ -63,40 +63,26 @@ const AppliedTrainers = () => {
             },
           };
 
-          axiosSecure
-            .post("/trainers", trainerData)
-            .then((res) => {
-              if (res.data.insertedId) {
-                const roleData = {
-                  role: "Trainer",
-                };
-                axiosSecure
-                  .patch(`/user/email/${trainer.email}`, roleData)
-                  .then(() => {
-                    // delete data from apply area 
-                    refetch();
-                    toast.success(
-                      `${trainer.name} is approved and added to trainers!`
-                    );
-                  })
-                  .catch((error) => {
-                    console.error("Error updating trainer role:", error);
-                    toast.error("Failed to update trainer role");
-                  });
-              }
-            })
-            .catch((error) => {
-              console.error(
-                "Error adding trainer to trainers database:",
-                error
-              );
-              toast.error("Failed to add trainer to trainers database");
-            });
+          axiosSecure.post("/trainers", trainerData).then((res) => {
+            if (res.data.insertedId) {
+              const roleData = {
+                role: "Trainer",
+              };
+              axiosSecure
+                .patch(`/user/email/${trainer.email}`, roleData)
+                .then(() => {
+                  refetch();
+                  toast.success(
+                    `${trainer.name} is approved and added to trainers!`
+                  );
+                })
+                .catch((error) => {
+                  console.error("Error updating trainer role:", error);
+                  toast.error("Failed to update trainer role");
+                });
+            }
+          });
         }
-      })
-      .catch((error) => {
-        console.error("Error updating trainer status:", error);
-        toast.error("Failed to approve trainer");
       });
   };
 
