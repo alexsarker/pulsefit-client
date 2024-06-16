@@ -5,8 +5,11 @@ import { IoEyeOutline } from "react-icons/io5";
 import { PiUserSwitchLight } from "react-icons/pi";
 import { FcCancel } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import useApply from "../../hooks/useApply";
 
 const AppliedTrainers = () => {
+  const [applyData] = useApply();
+
   return (
     <div>
       <Breadcrumbs
@@ -20,7 +23,6 @@ const AppliedTrainers = () => {
 
       <div className="overflow-x-auto mx-auto mt-12 border p-6 rounded-2xl">
         <table className="table">
-          {/* head */}
           <thead>
             <tr className="text-piccolo text-base">
               <th>#</th>
@@ -33,28 +35,34 @@ const AppliedTrainers = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <div className="flex space-x-4 items-center">
-                  <img src="" className="avatar rounded-full w-6 h-6" />
-                  <p>Corina McCoy</p>
-                </div>
-              </td>
-              <td>20</td>
-              <td>Yoga, Pilates</td>
-              <td>Monday 8 AM - 10 AM</td>
-              <td>10+ Years</td>
-              <td>
-                <div className="flex space-x-8 justify-center">
-                  <Link to="/dashboard/appliedTrainerDetail">
-                    <IoEyeOutline className="text-2xl text-whis" />
-                  </Link>
-                  <PiUserSwitchLight className="text-2xl text-roshi" />
-                  <FcCancel className="text-2xl text-dodoria" />
-                </div>
-              </td>
-            </tr>
+            {applyData.map((trainer, index) => (
+              <tr key={trainer._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex space-x-4 items-center">
+                    <img
+                      src={trainer.photo}
+                      className="avatar rounded-full w-6 h-6"
+                      alt={trainer.name}
+                    />
+                    <p>{trainer.name}</p>
+                  </div>
+                </td>
+                <td>{trainer.age}</td>
+                <td>{trainer.skills.join(", ")}</td>
+                <td>{`${trainer.day} ${trainer.startTime} - ${trainer.endTime}`}</td>
+                <td>{trainer.experience} Years</td>
+                <td>
+                  <div className="flex space-x-8 justify-center">
+                    <Link to={`/dashboard/apply/detail/${trainer._id}`}>
+                      <IoEyeOutline className="text-2xl text-whis" />
+                    </Link>
+                    <PiUserSwitchLight className="text-2xl text-roshi" />
+                    <FcCancel className="text-2xl text-dodoria" />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

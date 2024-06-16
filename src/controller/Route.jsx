@@ -116,8 +116,10 @@ const router = createBrowserRouter([
         element: <Subscribers />,
       },
       {
-        path: "appliedTrainerDetail",
+        path: "apply/detail/:id",
         element: <AppTrainerDetail />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/apply/detail/${params.id}`),
       },
       {
         path: "finance",

@@ -3,9 +3,11 @@ import Breadcrumbs from "../../components/DashComp/Breadcrumbs";
 import DashTitle from "../../components/DashComp/DashTitle";
 import { AiOutlineClose } from "react-icons/ai";
 import useApply from "../../hooks/useApply";
+import useAuth from "../../hooks/useAuth";
 
 const ActivityLogs = () => {
-  const { applyData } = useApply();
+  const { user } = useAuth();
+  const [applyData] = useApply(`/email/${user.email}`);
 
   return (
     <div>
