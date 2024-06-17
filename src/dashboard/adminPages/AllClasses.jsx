@@ -1,20 +1,95 @@
 import { useForm } from "react-hook-form";
 import Breadcrumbs from "../../components/DashComp/Breadcrumbs";
 import DashTitle from "../../components/DashComp/DashTitle";
-import { AiOutlineDelete } from "react-icons/ai";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoCloseOutline } from "react-icons/io5";
 import AddButton from "../../components/DashComp/AddButton";
 import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import useClass from "../../hooks/useClass";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const AllClasses = () => {
+  const axiosPublic = useAxiosPublic();
+  const [classesData, refetch] = useClass();
   const [showForm, setShowForm] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
+  const [updateData, setUpdateData] = useState(null);
+
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    const classData = {
+      className: data.title,
+      imageURL: data.photo,
+      description: data.description,
+      totalBookings: 0,
+    };
+
+    axiosPublic
+      .post("/classes", classData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Class added successfully");
+          reset();
+          setShowForm(false);
+          refetch();
+        } else {
+          toast.error("Failed to add class");
+        }
+      })
+      .catch(() => {
+        toast.error("An error occurred");
+      });
   };
+
+  const handleDelete = (classId) => {
+    axiosPublic
+      .delete(`/classes/${classId}`)
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          toast.success("Class deleted successfully");
+          refetch();
+        } else {
+          toast.error("Failed to delete class");
+        }
+      })
+      .catch(() => {
+        toast.error("An error occurred");
+      });
+  };
+
+  const handleUpdate = (classId) => {
+    const classToUpdate = classesData.find((classItem) => classItem._id === classId);
+    setUpdateData(classToUpdate);
+    setValue("title", classToUpdate.className);
+    setValue("photo", classToUpdate.imageURL);
+    setValue("description", classToUpdate.description);
+    setShowForm(true);
+  };
+
+  const handlePatchSubmit = (data) => {
+    const updatedClassData = {
+      className: data.title,
+      imageURL: data.photo,
+      description: data.description,
+    };
+
+    axiosPublic
+      .patch(`/classes/${updateData._id}`, updatedClassData)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Class updated successfully");
+          reset();
+          setShowForm(false);
+          refetch();
+        } else {
+          toast.error("Failed to update class");
+        }
+      })
+      .catch(() => {
+        toast.error("An error occurred");
+      });
+  };
+
   return (
     <div>
       <Breadcrumbs router="/dashboard/allClasses" routeName="All Classes" />
@@ -25,12 +100,25 @@ const AllClasses = () => {
       <AddButton name={"Add New Class"} onClick={() => setShowForm(true)} />
       {showForm && (
         <div className="p-10 border rounded-2xl w-max mx-auto mt-12">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            onSubmit={
+              updateData
+                ? handleSubmit(handlePatchSubmit)
+                : handleSubmit(onSubmit)
+            }
+            className="space-y-4"
+          >
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl">Add New Class</h2>
+              <h2 className="text-2xl">
+                {updateData ? "Update Class" : "Add New Class"}
+              </h2>
               <IoCloseOutline
                 className="text-3xl cursor-pointer"
-                onClick={() => setShowForm(false)}
+                onClick={() => {
+                  setShowForm(false);
+                  setUpdateData(null);
+                  reset();
+                }}
               />
             </div>
             <div className="form-control">
@@ -38,7 +126,7 @@ const AllClasses = () => {
                 type="text"
                 className="input input-bordered w-72"
                 placeholder="Class Title"
-                {...register("title")}
+                {...register("title", { value: updateData?.className })}
                 required
               />
             </div>
@@ -47,7 +135,7 @@ const AllClasses = () => {
                 type="url"
                 className="input input-bordered w-72"
                 placeholder="Class Image URL"
-                {...register("photo")}
+                {...register("photo", { value: updateData?.imageURL })}
                 required
               />
             </div>
@@ -55,13 +143,13 @@ const AllClasses = () => {
               <textarea
                 className="textarea textarea-bordered text-base"
                 placeholder="Class Description"
-                {...register("description")}
+                {...register("description", { value: updateData?.description })}
                 required
               ></textarea>
             </div>
             <div className="form-control mt-4">
-              <button className="btn bg-piccolo text-white px-10 hover:bg-[#2A2473] w-max">
-                Add
+              <button className="btn bg-piccolo w-max text-white px-10 hover:bg-[#2A2473]">
+                {updateData ? "Update" : "Add"}
               </button>
             </div>
           </form>
@@ -80,28 +168,49 @@ const AllClasses = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <div className="flex space-x-4 items-center">
-                  <img src="" className="avatar rounded-2xl w-8 h-8" />
-                  <p>Yoga</p>
-                </div>
-              </td>
-              <td>Rhonda Rhodes</td>
-              <td>
-                <div className="flex space-x-8 justify-center">
-                  <AiOutlineEdit className="text-2xl text-whis" />
-                  <AiOutlineDelete className="text-2xl text-dodoria" />
-                </div>
-              </td>
-            </tr>
+            {classesData?.map((classItem, index) => (
+              <tr key={classItem._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex space-x-4 items-center">
+                    <img
+                      src={classItem.imageURL}
+                      className="avatar rounded-full w-12 h-12"
+                      alt={classItem.className}
+                    />
+                    <p>{classItem.className}</p>
+                  </div>
+                </td>
+                <td>
+                  {classItem.trainers?.map((trainer, idx) => (
+                    <div key={idx} className="flex items-center space-x-2">
+                      <img
+                        src={trainer.profileImage}
+                        className="avatar rounded-full w-6 h-6 mt-2"
+                        alt={trainer.name}
+                      />
+                      <span className="mt-2">{trainer.name}</span>
+                    </div>
+                  ))}
+                </td>
+                <td>
+                  <div className="flex space-x-8 justify-center">
+                    <AiOutlineEdit
+                      onClick={() => handleUpdate(classItem._id)}
+                      className="text-2xl text-whis cursor-pointer"
+                    />
+                    <AiOutlineDelete
+                      onClick={() => handleDelete(classItem._id)}
+                      className="text-2xl text-dodoria cursor-pointer"
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <div>
-        <Toaster position="top-right" reverseOrder={false} />
-      </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
