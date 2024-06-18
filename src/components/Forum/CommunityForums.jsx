@@ -4,8 +4,11 @@ import SectionTitle from "../SectionTitle";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import useCommunity from "../../hooks/useCommunity";
 import { PiCrownThin } from "react-icons/pi";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import axios from "axios";
 
 const CommunityForums = () => {
+  const axiosPublic = useAxiosPublic();
   const [forumsData] = useCommunity();
   const [search, setSearch] = useState("");
   const [filteredForums, setFilteredForums] = useState([]);
@@ -13,15 +16,56 @@ const CommunityForums = () => {
   const itemsPerPage = 4;
 
   useEffect(() => {
-    const filtered = forumsData.filter(post =>
-      post.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredForums(filtered);
-    setCurrentPage(0);
+    if (forumsData) {
+      const filtered = forumsData.filter(
+        (post) =>
+          post.title && post.title.toLowerCase().includes(search.toLowerCase())
+      );
+      const updatedFiltered = filtered.map((post) => ({
+        ...post,
+        upvotes: post.upvotes || 0,
+        downvotes: post.downvotes || 0,
+      }));
+      setFilteredForums(updatedFiltered);
+      setCurrentPage(0);
+    }
   }, [search, forumsData]);
 
   const totalPages = Math.ceil(filteredForums.length / itemsPerPage);
-  const paginatedForums = filteredForums.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  const paginatedForums = filteredForums.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
+
+  const handleUpvote = (postId) => {
+    const updatedForums = filteredForums.map((post) => {
+      if (post._id === postId) {
+        return { ...post, upvotes: post.upvotes + 1 };
+      }
+      return post;
+    });
+    setFilteredForums(updatedForums);
+
+    const upvotesData = {
+      upvotes: updatedForums.find((post) => post._id === postId).upvotes,
+    };
+    axiosPublic.patch(`/community/${postId}`, upvotesData);
+  };
+
+  const handleDownvote = (postId) => {
+    const updatedForums = filteredForums.map((post) => {
+      if (post._id === postId) {
+        return { ...post, downvotes: post.downvotes + 1 };
+      }
+      return post;
+    });
+    setFilteredForums(updatedForums);
+
+    const downvotesData = {
+      downvotes: updatedForums.find((post) => post._id === postId).downvotes,
+    };
+    axiosPublic.patch(`/community/${postId}`, downvotesData);
+  };
 
   return (
     <div className="mb-24">
@@ -82,11 +126,17 @@ const CommunityForums = () => {
               </div>
               <div className="space-y-5">
                 <div className="flex items-center gap-4">
-                  <BiUpvote className="text-4xl text-roshi p-2 bg-roshi-10 rounded-full" />
+                  <BiUpvote
+                    className="text-4xl text-roshi p-2 bg-roshi-10 rounded-full cursor-pointer"
+                    onClick={() => handleUpvote(post._id)}
+                  />
                   <p className="text-trunks">{post.upvotes}</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <BiDownvote className="text-4xl text-dodoria p-2 bg-dodoria-10 rounded-full" />
+                  <BiDownvote
+                    className="text-4xl text-dodoria p-2 bg-dodoria-10 rounded-full cursor-pointer"
+                    onClick={() => handleDownvote(post._id)}
+                  />
                   <p className="text-trunks">{post.downvotes}</p>
                 </div>
               </div>
@@ -98,7 +148,11 @@ const CommunityForums = () => {
         {[...Array(totalPages)].map((_, index) => (
           <button
             key={index}
-            className={`join-item btn ${index === currentPage ? "btn-active bg-piccolo text-white hover:bg-[#2A2473]" : "bg-transparent hover:bg-[#4E46B41F]"}`}
+            className={`join-item btn ${
+              index === currentPage
+                ? "btn-active bg-piccolo text-white hover:bg-[#2A2473]"
+                : "bg-transparent hover:bg-[#4E46B41F]"
+            }`}
             onClick={() => setCurrentPage(index)}
           >
             {index + 1}

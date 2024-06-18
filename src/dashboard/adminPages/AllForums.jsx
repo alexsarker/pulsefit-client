@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useCommunity from "../../hooks/useCommunity";
+import { BiDownvote, BiUpvote } from "react-icons/bi";
 
 const AllForums = () => {
   const { user } = useAuth();
@@ -175,6 +176,7 @@ const AllForums = () => {
               <th>#</th>
               <th>Forum Post</th>
               <th>Posted by</th>
+              <th>Voted</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
@@ -193,6 +195,18 @@ const AllForums = () => {
                   </div>
                 </td>
                 <td>{forum.author}</td>
+                <td>
+                  <div className="flex space-x-4">
+                    <div className="flex items-center gap-2">
+                      <BiUpvote className="text-3xl text-roshi p-2 bg-roshi-10 rounded-full" />
+                      <p>{forum.upvotes}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BiDownvote className="text-3xl text-dodoria p-2 bg-dodoria-10 rounded-full" />
+                      <p>{forum.downvotes}</p>
+                    </div>
+                  </div>
+                </td>
                 <td>
                   <div className="flex space-x-8 justify-center">
                     <AiOutlineEdit
