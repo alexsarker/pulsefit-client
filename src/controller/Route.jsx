@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path: "/trainers/:id",
         element: <TrainerDetail />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/trainers/${params.id}`),
+          fetch(`https://pulsefit-server-mu.vercel.app/trainers/${params.id}`),
       },
       {
         path: "/subscription/:id",
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/booked/${params.id}`),
+          fetch(`https://pulsefit-server-mu.vercel.app/booked/${params.id}`),
       },
       {
         path: "/applyTrainer",
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/booked/${params.id}`),
+          fetch(`https://pulsefit-server-mu.vercel.app/booked/${params.id}`),
       },
       {
         path: "/invoice/:id",
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/booked/${params.id}`),
+          fetch(`https://pulsefit-server-mu.vercel.app/booked/${params.id}`),
       },
       { path: "/classes", element: <Classes /> },
       {
@@ -98,7 +98,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/classes/detail/${params.id}`),
+          fetch(
+            `https://pulsefit-server-mu.vercel.app/classes/detail/${params.id}`
+          ),
       },
       { path: "/forum", element: <Forum /> },
       { path: "/profile", element: <UserProfile /> },
@@ -159,7 +161,9 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/apply/detail/${params.id}`),
+          fetch(
+            `https://pulsefit-server-mu.vercel.app/apply/detail/${params.id}`
+          ),
       },
       {
         path: "finance",
