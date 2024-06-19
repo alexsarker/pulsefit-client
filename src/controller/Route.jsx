@@ -28,78 +28,80 @@ import Dashboard from "../dashboard/Dashboard";
 import AppTrainerDetail from "../dashboard/adminPages/AppTrainerDetail";
 import ClassDetail from "../pages/ClassDetail";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import AdminRoute from "./AdminRoute";
+import TrainerRoute from "./TrainerRoute";
+import MemberRoute from "./MemberRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
       {
         path: "/trainers",
         element: <Trainers />,
       },
       {
         path: "/trainers/:id",
-        element: (
-          <PrivateRoute>
-            <TrainerDetail />
-          </PrivateRoute>
-        ),
+        element: <TrainerDetail />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/trainers/${params.id}`),
       },
       {
         path: "/subscription/:id",
-        element: <Subscription />,
+        element: (
+          <PrivateRoute>
+            <Subscription />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/booked/${params.id}`),
       },
       {
         path: "/applyTrainer",
-        element: <ApplyTrainer />,
+        element: (
+          <PrivateRoute>
+            <ApplyTrainer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment/:id",
-        element: <Payment />,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/booked/${params.id}`),
       },
       {
         path: "/invoice/:id",
-        element: <PaymentSuccess />,
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/booked/${params.id}`),
       },
-      {
-        path: "/classes",
-        element: <Classes />,
-      },
+      { path: "/classes", element: <Classes /> },
       {
         path: "/classes/detail/:id",
-        element: <ClassDetail />,
+        element: (
+          <PrivateRoute>
+            <ClassDetail />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/classes/detail/${params.id}`),
       },
-      {
-        path: "/forum",
-        element: <Forum />,
-      },
-      {
-        path: "/profile",
-        element: <UserProfile />,
-      },
+      { path: "/forum", element: <Forum /> },
+      { path: "/profile", element: <UserProfile /> },
     ],
   },
   {
@@ -107,61 +109,99 @@ const router = createBrowserRouter([
     element: <DashRoutes />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-
+      { path: "/dashboard", element: <Dashboard /> },
       // admin
       {
         path: "allTrainers",
-        element: <AllTrainers />,
+        element: (
+          <AdminRoute>
+            <AllTrainers />
+          </AdminRoute>
+        ),
       },
       {
         path: "allForums",
-        element: <AllForums />,
+        element: (
+          <AdminRoute>
+            <AllForums />
+          </AdminRoute>
+        ),
       },
       {
         path: "allClasses",
-        element: <AllClasses />,
+        element: (
+          <AdminRoute>
+            <AllClasses />
+          </AdminRoute>
+        ),
       },
       {
         path: "appliedTrainers",
-        element: <AppliedTrainers />,
+        element: (
+          <AdminRoute>
+            <AppliedTrainers />
+          </AdminRoute>
+        ),
       },
       {
         path: "subscribers",
-        element: <Subscribers />,
+        element: (
+          <AdminRoute>
+            <Subscribers />
+          </AdminRoute>
+        ),
       },
       {
         path: "apply/detail/:id",
-        element: <AppTrainerDetail />,
+        element: (
+          <AdminRoute>
+            <AppTrainerDetail />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/apply/detail/${params.id}`),
       },
       {
         path: "finance",
-        element: <Finance />,
+        element: (
+          <AdminRoute>
+            <Finance />
+          </AdminRoute>
+        ),
       },
-
       // trainer
       {
         path: "manageSlots",
-        element: <ManageSlots />,
+        element: (
+          <TrainerRoute>
+            <ManageSlots />
+          </TrainerRoute>
+        ),
       },
       {
         path: "addForum",
-        element: <AddForum />,
+        element: (
+          <TrainerRoute>
+            <AddForum />
+          </TrainerRoute>
+        ),
       },
-
       // member
       {
         path: "logs",
-        element: <ActivityLogs />,
+        element: (
+          <MemberRoute>
+            <ActivityLogs />
+          </MemberRoute>
+        ),
       },
       {
         path: "bookedTrainers",
-        element: <BookedTrainers />,
+        element: (
+          <MemberRoute>
+            <BookedTrainers />
+          </MemberRoute>
+        ),
       },
     ],
   },
