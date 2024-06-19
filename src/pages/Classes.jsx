@@ -2,24 +2,29 @@ import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useClass from "../hooks/useClass";
+import useTrainer from "../hooks/useTrainer";
 
 const Classes = () => {
   const [classesData] = useClass("");
+  const [trainerData] = useTrainer("");
   const [search, setSearch] = useState("");
   const [filteredClasses, setFilteredClasses] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
 
   useEffect(() => {
-    const filtered = classesData.filter(classItem =>
-      classItem.className.toLowerCase().includes(search.toLowerCase())
+    const filtered = classesData.filter((classItem) =>
+      classItem.className?.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredClasses(filtered);
     setCurrentPage(0);
   }, [search, classesData]);
 
   const totalPages = Math.ceil(filteredClasses.length / itemsPerPage);
-  const paginatedClasses = filteredClasses.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  const paginatedClasses = filteredClasses.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   return (
     <>
@@ -55,54 +60,67 @@ const Classes = () => {
           </label>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {paginatedClasses.map((classItem) => (
-            <Link
-              to={`classes/${classItem._id}`}
-              key={classItem._id}
-              className="card card-side hover:bg-[#4E46B40D]"
-            >
-              <img
-                src={classItem.imageURL}
-                alt={classItem.className}
-                className="rounded-2xl w-56 h-56 object-cover"
-              />
-              <div className="card-body">
-                <h2 className="card-title">
-                  {classItem.className}
-                </h2>
-                <p className="text-trunks line-clamp-2">
-                  {classItem.description}
-                </p>
-                <div className="flex gap-4 items-center">
-                  <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-                    {classItem.trainers.slice(0, 3).map((trainer, index) => (
-                      <div key={index} className="avatar">
-                        <div className="w-12">
-                          <img src={trainer.profileImage} alt={trainer.name} />
-                        </div>
-                      </div>
-                    ))}
-                    {classItem.trainers.length > 3 && (
-                      <div className="avatar placeholder">
-                        <div className="w-12 bg-piccolo text-white">
-                          <span>+{classItem.trainers.length - 3}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <p className="text-piccolo">
-                    Bookings ({classItem.totalBookings})
+          {paginatedClasses.map((classItem) => {
+            const matchingTrainers = trainerData.filter((trainer) =>
+              trainer.skills.includes(classItem.className)
+            );
+
+            return (
+              <div
+                key={classItem._id}
+                className="card card-side hover:bg-[#4E46B40D]"
+              >
+                <Link to={`/classes/detail/${classItem._id}`} className="flex">
+                  <img
+                    src={classItem.imageURL}
+                    alt={classItem.className}
+                    className="rounded-2xl w-56 h-56 object-cover"
+                  />
+                </Link>
+                <div className="card-body">
+                  <h2 className="card-title">
+                    <Link to={`/classes/detail/${classItem._id}`}>
+                      {classItem.className}
+                    </Link>
+                  </h2>
+                  <p className="text-trunks w-96 line-clamp-3">
+                    {classItem.description}
                   </p>
+                  <div className="flex gap-4 items-center">
+                    <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                      {matchingTrainers.map((trainer, index) => (
+                        <Link
+                          to={`/trainers/${trainer._id}`}
+                          key={index}
+                          className="avatar"
+                        >
+                          <div className="w-12">
+                            <img
+                              src={trainer.profileImage}
+                              alt={trainer.name}
+                            />
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <p className="text-piccolo">
+                      Bookings ({classItem.totalBookings})
+                    </p>
+                  </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
         <div className="join mt-12 flex justify-center">
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`join-item btn ${index === currentPage ? "btn-active bg-piccolo text-white hover:bg-[#2A2473]" : "bg-transparent hover:bg-[#4E46B41F]"}`}
+              className={`join-item btn ${
+                index === currentPage
+                  ? "btn-active bg-piccolo text-white hover:bg-[#2A2473]"
+                  : "bg-transparent hover:bg-[#4E46B41F]"
+              }`}
               onClick={() => setCurrentPage(index)}
             >
               {index + 1}

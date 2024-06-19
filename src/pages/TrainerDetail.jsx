@@ -1,11 +1,50 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import SectionTitle from "../components/SectionTitle";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import BecomeTrainer from "../components/BecomeTrainer";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 const TrainerDetail = () => {
+  const { user } = useAuth();
   const trainer = useLoaderData();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
+  const handleBooked = (trainer) => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const currentDate = year + "-" + month + "-" + date;
+
+    const bookedData = {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+      date: trainer.availableSlots.day,
+      time: trainer.availableSlots.time,
+      trainerName: trainer.name,
+      trainerImage: trainer.profileImage,
+      trainerEmail: trainer.email,
+      trainerSkills: trainer.skills,
+      bookedDate: currentDate,
+    };
+
+    console.log("Booking data to be sent:", bookedData);
+
+    axiosSecure
+      .post("/booked", bookedData)
+      .then((response) => {
+        console.log("Booking successful:", response.data);
+        navigate(`/subscription/${response.data.insertedId}`);
+      })
+      .catch((error) => {
+        console.error("Error booking:", error);
+      });
+  };
+
   return (
     <>
       <Helmet>
@@ -107,12 +146,12 @@ const TrainerDetail = () => {
               <p className="text-trunks">
                 {trainer.availableSlots.day}, {trainer.availableSlots.time}
               </p>
-              <Link
-                to="#"
+              <button
+                onClick={() => handleBooked(trainer)}
                 className="btn btn-sm bg-piccolo text-white px-6 hover:bg-[#2A2473]"
               >
                 Book Now
-              </Link>
+              </button>
             </div>
           </div>
         </div>

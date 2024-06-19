@@ -1,8 +1,31 @@
 import { CiCircleCheck } from "react-icons/ci";
 import { PiCrownLight } from "react-icons/pi";
 import { VscFlame, VscRocket } from "react-icons/vsc";
+import PropTypes from "prop-types";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
-const Plans = () => {
+const Plans = ({ booking }) => {
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+
+  const handleJoinNow = (packageName, price) => {
+    const data = {
+      packageName: packageName,
+      price: price,
+    };
+
+    axiosPublic
+      .patch(`/booked/${booking._id}`, data)
+      .then((response) => {
+        console.log("Booking updated:", response.data);
+        navigate(`/payment/${booking._id}`);
+      })
+      .catch((error) => {
+        console.error("Error updating booking:", error);
+      });
+  };
+
   return (
     <>
       <div className="flex justify-center">
@@ -17,25 +40,28 @@ const Plans = () => {
                 $10<small className="text-2xl">/month</small>
               </h2>
               <div className="py-8">
-                <div className="flex  gap-2">
+                <div className="flex gap-2">
                   <CiCircleCheck className="text-piccolo text-lg mt-1" />
                   <p className="max-w-80">
                     Access to gym facilities during regular hours
                   </p>
                 </div>
-                <div className="flex  gap-2">
+                <div className="flex gap-2">
                   <CiCircleCheck className="text-piccolo text-lg mt-1" />
                   <p className="max-w-80">
                     Use of cardio and strength training equipment
                   </p>
                 </div>
-                <div className="flex  gap-2">
+                <div className="flex gap-2">
                   <CiCircleCheck className="text-piccolo text-lg mt-1" />
                   <p className="max-w-80">Access to locker rooms and showers</p>
                 </div>
               </div>
               <div className="card-actions mx-auto">
-                <button className="btn w-32 bg-krillin text-white hover:bg-[#EB9F05]">
+                <button
+                  className="btn w-32 bg-krillin text-white hover:bg-[#EB9F05]"
+                  onClick={() => handleJoinNow("Basic", 10)}
+                >
                   Join Now
                 </button>
               </div>
@@ -70,7 +96,10 @@ const Plans = () => {
                 </div>
               </div>
               <div className="card-actions mx-auto">
-                <button className="btn w-32 bg-whis text-white hover:bg-[#2034DC]">
+                <button
+                  className="btn w-32 bg-whis text-white hover:bg-[#2034DC]"
+                  onClick={() => handleJoinNow("Standard", 50)}
+                >
                   Join Now
                 </button>
               </div>
@@ -107,7 +136,10 @@ const Plans = () => {
                 </div>
               </div>
               <div className="card-actions mx-auto">
-                <button className="btn w-32 bg-chichi text-white hover:bg-[#EB3A50]">
+                <button
+                  className="btn w-32 bg-chichi text-white hover:bg-[#EB3A50]"
+                  onClick={() => handleJoinNow("Premium", 100)}
+                >
                   Join Now
                 </button>
               </div>
@@ -117,6 +149,17 @@ const Plans = () => {
       </div>
     </>
   );
+};
+
+Plans.propTypes = {
+  booking: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    photo: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    trainerSkills: PropTypes.arrayOf(PropTypes.string).isRequired,
+    date: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Plans;

@@ -58,7 +58,9 @@ const AllClasses = () => {
   };
 
   const handleUpdate = (classId) => {
-    const classToUpdate = classesData.find((classItem) => classItem._id === classId);
+    const classToUpdate = classesData.find(
+      (classItem) => classItem._id === classId
+    );
     setUpdateData(classToUpdate);
     setValue("title", classToUpdate.className);
     setValue("photo", classToUpdate.imageURL);
@@ -163,7 +165,7 @@ const AllClasses = () => {
             <tr className="text-piccolo text-base">
               <th>#</th>
               <th>Class Name</th>
-              <th>Managing Trainer</th>
+              <th>Description</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
@@ -182,16 +184,7 @@ const AllClasses = () => {
                   </div>
                 </td>
                 <td>
-                  {classItem.trainers?.map((trainer, idx) => (
-                    <div key={idx} className="flex items-center space-x-2">
-                      <img
-                        src={trainer.profileImage}
-                        className="avatar rounded-full w-6 h-6 mt-2"
-                        alt={trainer.name}
-                      />
-                      <span className="mt-2">{trainer.name}</span>
-                    </div>
-                  ))}
+                  <p className="max-w-4xl line-clamp-2">{classItem.description}</p>
                 </td>
                 <td>
                   <div className="flex space-x-8 justify-center">

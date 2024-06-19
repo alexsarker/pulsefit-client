@@ -9,9 +9,9 @@ import { MdPostAdd } from "react-icons/md";
 const TrainerBoard = () => {
   return (
     <div>
-      <Breadcrumbs routeName={"Dashboard"} router={"/dashboard"} />
+      <Breadcrumbs routeName={"Trainer Dashboard"} router={"/dashboard"} />
       <DashTitle
-        headline={"Dashboard"}
+        headline={"Trainer Dashboard"}
         subHeadline={
           "Welcome to Your Trainer Dashboard - Manage Your Activities"
         }

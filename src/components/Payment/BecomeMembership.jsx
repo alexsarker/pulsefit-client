@@ -1,6 +1,7 @@
 import Gateway from "./Gateway";
+import PropTypes from "prop-types";
 
-const BecomeMembership = () => {
+const BecomeMembership = ({ booking }) => {
   return (
     <>
       <div className="flex justify-center">
@@ -8,27 +9,31 @@ const BecomeMembership = () => {
           <div className="flex gap-5 items-center">
             <div className="avatar">
               <div className="w-24 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={booking.photo} alt="Trainer" />
               </div>
             </div>
             <div>
-              <h4 className="font-bold text-xl">John Smith</h4>
-              <p className="text-hit">Yoga, Pilates, Meditation</p>
+              <h4 className="font-bold text-xl">{booking.name}</h4>
+              <p className="text-hit">{booking.trainerSkills.join(", ")}</p>
             </div>
           </div>
           <div className="space-x-2">
             <span className="text-white bg-black py-2 px-4 h-full rounded-md">
-              Monday 8 AM - 9 AM
+              {booking.date} {booking.time}
             </span>
             <span className="text-white bg-whis py-2 px-4 h-full rounded-md">
-              Standard Membership/$50
+              {booking.packageName} Membership / ${booking.price}
             </span>
           </div>
-          <Gateway />
+          <Gateway booking={booking} />
         </div>
       </div>
     </>
   );
+};
+
+BecomeMembership.propTypes = {
+  booking: PropTypes.object.isRequired,
 };
 
 export default BecomeMembership;

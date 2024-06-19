@@ -26,6 +26,8 @@ import Finance from "../dashboard/adminPages/Finance";
 import DashRoutes from "./DashRoutes";
 import Dashboard from "../dashboard/Dashboard";
 import AppTrainerDetail from "../dashboard/adminPages/AppTrainerDetail";
+import ClassDetail from "../pages/ClassDetail";
+import PaymentSuccess from "../pages/PaymentSuccess";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,20 +61,36 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/trainers/${params.id}`),
       },
       {
-        path: "/subscription",
+        path: "/subscription/:id",
         element: <Subscription />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/booked/${params.id}`),
       },
       {
         path: "/applyTrainer",
         element: <ApplyTrainer />,
       },
       {
-        path: "/payment",
+        path: "/payment/:id",
         element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/booked/${params.id}`),
+      },
+      {
+        path: "/invoice/:id",
+        element: <PaymentSuccess />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/booked/${params.id}`),
       },
       {
         path: "/classes",
         element: <Classes />,
+      },
+      {
+        path: "/classes/detail/:id",
+        element: <ClassDetail />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/classes/detail/${params.id}`),
       },
       {
         path: "/forum",

@@ -105,7 +105,7 @@ const AddForum = () => {
 
   return (
     <div>
-      <Breadcrumbs router="/dashboard/allForums" routeName="All Forum Posts" />
+      <Breadcrumbs router="/dashboard/addForum" routeName="All Forum Posts" />
       <DashTitle
         headline="All Forum Posts"
         subHeadline="Monitor and Moderate Forum Discussions"
@@ -194,7 +194,10 @@ const AddForum = () => {
                     <p>{forum.title}</p>
                   </div>
                 </td>
-                <td>{forum.author}</td>
+                <td>
+                  {forum.author}{" "}
+                  {forum.role === "Admin" && <span>(Admin)</span>}
+                </td>
                 <td>
                   <div className="flex space-x-4">
                     <div className="flex items-center gap-2">
