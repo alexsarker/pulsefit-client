@@ -30,4 +30,3 @@ Features:
 Admin Email: rock@gmail.com
 Admin Password: Rock#1234
 
- Selected Category: assignment12_category_0010
